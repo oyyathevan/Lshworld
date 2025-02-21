@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert your color images to grayscale online with our fully responsive image conversion tool. Adjust grayscale intensity and optimize images for web use.">
+    <meta name="keywords" content="grayscale image, image converter, color to grayscale, online image tool">
+    <meta name="author" content="Your Name">
+    <title>Color to Grayscale Image Converter</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #4CAF50;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Form Styles */
+        #conversion-tool {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="file"] {
+            padding: 0.5rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+            font-size: 1rem;
+        }
+
+        input[type="range"], button {
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="range"] {
+            width: 100%;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Output Styles */
+        #output {
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .image-container img {
+            max-width: 45%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-info {
+            font-size: 0.9rem;
+            color: #777;
+            margin-top: 0.5rem;
+        }
+
+        #download-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        #download-link:hover {
+            background-color: #45a049;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .image-container {
+                flex-direction: column;
+            }
+
+            .image-container img {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Color to Grayscale Image Converter</h1>
+    </header>
+
+    <main>
+        <!-- Ad Space Top -->
+        <section id="ad-space-top">
+            <!-- Google AdSense Ad Unit -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_SENSE_ID"
+                    crossorigin="anonymous"></script>
+            <!-- Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_AD_SENSE_ID"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </section>
+
+        <!-- Conversion Tool -->
+        <section id="conversion-tool">
+            <h2>Convert Your Images</h2>
+            <form id="convert-form">
+                <label for="image-upload">Upload Image:</label>
+                <input type="file" id="image-upload" accept="image/*" required>
+                
+                <label for="grayscale-intensity">Grayscale Intensity:</label>
+                <input type="range" id="grayscale-intensity" min="0" max="1" step="0.1" value="1">
+                <span id="intensity-value">100%</span>
+                
+                <button type="submit">Convert to Grayscale</button>
+            </form>
+
+            <div id="output">
+                <h3>Results:</h3>
+                <div class="image-container">
+                    <div>
+                        <h4>Original Image</h4>
+                        <img id="original-image" src="" alt="Original Image">
+                        <p class="image-info" id="original-size"></p>
+                    </div>
+                    <div>
+                        <h4>Grayscale Image</h4>
+                        <img id="grayscale-image" src="" alt="Grayscale Image">
+                        <p class="image-info" id="grayscale-size"></p>
+                    </div>
+                </div>
+                <a id="download-link" href="#" download="grayscale-image.jpg">Download Grayscale Image</a>
+            </div>
+        </section>
+
+        <!-- Ad Space Bottom -->
+        <section id="ad-space-bottom">
+            <!-- Google AdSense Ad Unit -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_SENSE_ID"
+                    crossorigin="anonymous"></script>
+            <!-- Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_AD_SENSE_ID"
+                 data-ad-slot="0987654321"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Color to Grayscale Image Converter. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Update intensity value display
+        const intensitySlider = document.getElementById('grayscale-intensity');
+        const intensityValue = document.getElementById('intensity-value');
+        intensitySlider.addEventListener('input', function() {
+            intensityValue.textContent = `${Math.round(this.value * 100)}%`;
+        });
+
+        // Image conversion logic
+        document.getElementById('convert-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const file = document.getElementById('image-upload').files[0];
+            const intensity = parseFloat(document.getElementById('grayscale-intensity').value);
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.src = e.target.result;
+                    
+                    img.onload = function() {
+                        // Display original image and size
+                        const originalImage = document.getElementById('original-image');
+                        const originalSize = document.getElementById('original-size');
+                        originalImage.src = img.src;
+                        originalSize.textContent = `Size: ${(file.size / 1024).toFixed(2)} KB`;
+
+                        // Convert to grayscale
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        ctx.drawImage(img, 0, 0);
+
+                        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                        const data = imageData.data;
+
+                        for (let i = 0; i < data.length; i += 4) {
+                            const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+                            data[i] = data[i + 1] = data[i + 2] = avg * intensity;
+                        }
+
+                        ctx.putImageData(imageData, 0, 0);
+
+                        const grayscaleImage = canvas.toDataURL('image/jpeg', 1.0);
+                        
+                        // Display grayscale image and size
+                        const grayscaleImageElement = document.getElementById('grayscale-image');
+                        const grayscaleSize = document.getElementById('grayscale-size');
+                        grayscaleImageElement.src = grayscaleImage;
+                        grayscaleSize.textContent = `Size: ${(grayscaleImage.length / 1024).toFixed(2)} KB`;
+
+                        // Enable download link
+                        const downloadLink = document.getElementById('download-link');
+                        downloadLink.href = grayscaleImage;
+                        downloadLink.download = `grayscale-image-${intensity * 100}%.jpg`;
+
+                        // Show output section
+                        document.getElementById('output').style.display = 'block';
+                    };
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
