@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Convert your color images to grayscale online with our fully responsive image conversion tool. Adjust grayscale intensity and optimize images for web use.">
-    <meta name="keywords" content="grayscale image, image converter, color to grayscale, online image tool">
-    <meta name="author" content="Your Name">
-    <title> AI Tool - Color to Grayscale Image Converter</title>
+    <meta name="description" content="Convert color images to grayscale online with our fully responsive image conversion tool. Adjust grayscale intensity and optimize images for web use.">
+    <meta name="keywords" content="grayscale image, image conversion, color to grayscale, online image tool">
+    <meta name="author" content="Your Company Name">
+    <title>Color to Grayscale Image Converter</title>
     <style>
         /* General Styles */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f7f6;
@@ -20,9 +20,17 @@
         header {
             background-color: #4CAF50;
             color: white;
-            padding: 1.5rem;
+            padding: 1rem;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header img {
+            height: 50px;
+            margin-right: 1rem;
         }
 
         main {
@@ -63,22 +71,19 @@
             font-size: 1rem;
         }
 
-        input[type="range"], button {
-            padding: 0.75rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
         input[type="range"] {
             width: 100%;
         }
 
         button {
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
             background-color: #4CAF50;
             color: white;
             font-weight: bold;
+            cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
@@ -128,6 +133,12 @@
             background-color: #45a049;
         }
 
+        /* Ad Space Styles */
+        .ad-space {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
         /* Footer Styles */
         footer {
             background-color: #333;
@@ -150,14 +161,14 @@
     </style>
 </head>
 <body>
-    <header
+    <header>
         <img src="/Lshworld/Screenshot 2025-02-22 005930.png" alt="LSH-WORLD Logo">
-        <h1>AI Tool - Color to Grayscale Image Converter</h1>
+        <h1>Color to Grayscale Image Converter</h1>
     </header>
 
     <main>
         <!-- Ad Space Top -->
-        <section id="ad-space-top">
+        <div class="ad-space">
             <!-- Google AdSense Ad Unit -->
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_SENSE_ID"
                     crossorigin="anonymous"></script>
@@ -171,11 +182,11 @@
             <script>
                  (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-        </section>
+        </div>
 
         <!-- Conversion Tool -->
         <section id="conversion-tool">
-            <h2>Convert Your Images</h2>
+            <h2>Convert Your Image to Grayscale</h2>
             <form id="convert-form">
                 <label for="image-upload">Upload Image:</label>
                 <input type="file" id="image-upload" accept="image/*" required>
@@ -206,7 +217,7 @@
         </section>
 
         <!-- Ad Space Bottom -->
-        <section id="ad-space-bottom">
+        <div class="ad-space">
             <!-- Google AdSense Ad Unit -->
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_SENSE_ID"
                     crossorigin="anonymous"></script>
@@ -220,11 +231,11 @@
             <script>
                  (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-        </section>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2025 S.Oyyathevan - Color to Grayscale Image Converter. All rights reserved.</p>
+        <p>&copy; 2025 Oyyathevan(lshworld). All rights reserved.</p>
     </footer>
 
     <script>
@@ -268,12 +279,14 @@
 
                         for (let i = 0; i < data.length; i += 4) {
                             const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-                            data[i] = data[i + 1] = data[i + 2] = avg * intensity;
+                            data[i] = avg * intensity; // Red
+                            data[i + 1] = avg * intensity; // Green
+                            data[i + 2] = avg * intensity; // Blue
                         }
 
                         ctx.putImageData(imageData, 0, 0);
 
-                        const grayscaleImage = canvas.toDataURL('image/jpeg', 1.0);
+                        const grayscaleImage = canvas.toDataURL('image/jpeg');
                         
                         // Display grayscale image and size
                         const grayscaleImageElement = document.getElementById('grayscale-image');
