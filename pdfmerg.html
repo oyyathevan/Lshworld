@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online PDF merger tool by Lshworld-AI Tools Hub - Combine multiple PDFs with stylish watermarking.">
+    <meta name="keywords" content="PDF merger, combine PDFs, merge PDF files, free PDF tool, Lshworld-AI Tools Hub">
+    <meta name="author" content="Lshworld-AI Tools Hub">
+    <title>PDF Merger - Muvin AI Tools Hub</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 30px;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(45deg, #6b48ff, #00ddeb);
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .upload-area {
+            padding: 40px;
+            position: relative;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .file-input-wrapper input {
+            width: 100%;
+            padding: 15px;
+            border: 2px dashed #6b48ff;
+            border-radius: 10px;
+            background: #f8f9ff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-input-wrapper input:hover {
+            border-color: #00ddeb;
+            background: #fff;
+        }
+
+        .file-list {
+            margin: 20px 0;
+            min-height: 100px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #fff;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .file-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .file-item button {
+            background: #e74c3c;
+            padding: 8px 15px;
+            font-size: 0.9em;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 15px;
+            background: linear-gradient(45deg, #6b48ff, #00ddeb);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #5a3de6, #00c4d3);
+        }
+
+        .ad-space {
+            margin: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .progress {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+            color: #27ae60;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 0 10px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .upload-area {
+                padding: 20px;
+            }
+
+            .file-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px;
+            }
+
+            .file-item button {
+                margin-top: 10px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PDF Merger Tool</h1>
+            <p> Muvin - AI Tools Hub</p>
+        </header>
+
+        <!-- Top Ad Space -->
+        <div class="ad-space">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR_ADSENSE_PUB_ID"
+                    crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="YOUR_ADSENSE_PUB_ID"
+                 data-ad-slot="YOUR_AD_UNIT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <main class="upload-area">
+            <div class="file-input-wrapper">
+                <input type="file" id="pdfFiles" accept=".pdf" multiple>
+            </div>
+            <div class="file-list" id="fileList"></div>
+            <div class="button-group">
+                <button onclick="addMoreFiles()">Add More Files</button>
+                <button onclick="mergePDFs()">Merge PDFs Now</button>
+            </div>
+            <div class="progress" id="progress">Merging your PDFs...</div>
+        </main>
+
+        <!-- Bottom Ad Space -->
+        <div class="ad-space">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR_ADSENSE_PUB_ID"
+                    crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="YOUR_ADSENSE_PUB_ID"
+                 data-ad-slot="YOUR_AD_UNIT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script>
+        let filesArray = [];
+
+        document.getElementById('pdfFiles').addEventListener('change', function(e) {
+            const newFiles = Array.from(e.target.files);
+            filesArray = [...filesArray, ...newFiles];
+            updateFileList();
+            clearFileInput();
+        });
+
+        function addMoreFiles() {
+            document.getElementById('pdfFiles').click();
+        }
+
+        function clearFileInput() {
+            document.getElementById('pdfFiles').value = '';
+        }
+
+        function updateFileList() {
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+            
+            filesArray.forEach((file, index) => {
+                const div = document.createElement('div');
+                div.className = 'file-item';
+                div.innerHTML = `
+                    ${file.name} (${(file.size / 1024).toFixed(2)} KB)
+                    <button onclick="removeFile(${index})">Remove</button>
+                `;
+                fileList.appendChild(div);
+            });
+        }
+
+        function removeFile(index) {
+            filesArray.splice(index, 1);
+            updateFileList();
+        }
+
+        async function mergePDFs() {
+            if (filesArray.length < 2) {
+                alert('Please upload at least 2 PDF files to merge');
+                return;
+            }
+
+            document.getElementById('progress').style.display = 'block';
+
+            const mergedPdf = await PDFLib.PDFDocument.create();
+            
+            for (const file of filesArray) {
+                const arrayBuffer = await file.arrayBuffer();
+                const pdf = await PDFLib.PDFDocument.load(arrayBuffer);
+                const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+                
+                copiedPages.forEach((page) => {
+                    const { width, height } = page.getSize();
+                    page.drawText('Lshworld-AI Tools Hub', {
+                        x: width / 2 - 70,
+                        y: 20,
+                        size: 12,
+                        color: PDFLib.rgb(0.5, 0.5, 0.5),
+                        opacity: 0.5
+                    });
+                    mergedPdf.addPage(page);
+                });
+            }
+
+            const pdfBytes = await mergedPdf.save();
+            const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'merged-document-by-Lshworld.pdf';
+            link.click();
+
+            document.getElementById('progress').style.display = 'none';
+        }
+    </script>
+<!-- Footer -->
+    <footer>
+       <center> <p>&copy; 2025 S.Oyyathevan - PDF Merg Tools All rights reserved.</p></center>
+    </footer>
+</body>
+
+</body>
+</html>
