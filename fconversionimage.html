@@ -3,76 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Convert and optimize images online. Supports multiple formats like JPEG, PNG, GIF, and more. Fast, easy, and SEO-friendly.">
+    <meta name="description" content="Convert and optimize images online. Supports multiple formats like JPEG, PNG, GIF, and WebP. Fast, easy, and SEO-friendly.">
     <meta name="keywords" content="image converter, image optimization, JPEG, PNG, GIF, WebP, SEO">
     <meta name="author" content="Your Name">
     <title>Image Format Converter</title>
     <style>
-        /* CSS for Attractive and Responsive Design */
+        /* General Styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f7f6;
+            background-color: #f4f4f9;
             color: #333;
         }
 
         header {
             background-color: #4CAF50;
             color: white;
-            padding: 2rem;
+            padding: 20px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        header h1 {
+        h1 {
             margin: 0;
             font-size: 2.5rem;
         }
 
-        header p {
-            margin: 0.5rem 0 0;
-            font-size: 1.2rem;
-        }
-
         main {
-            padding: 2rem;
+            padding: 20px;
             max-width: 800px;
-            margin: 0 auto;
-        }
-
-        #converter {
+            margin: 20px auto;
             background: white;
-            padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        /* Converter Section */
+        #converter {
+            text-align: center;
+        }
+
         #converter h2 {
-            margin-top: 0;
-            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-size: 2rem;
             color: #4CAF50;
         }
 
-        form {
+        #conversionForm {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 15px;
         }
 
-        label {
+        #conversionForm label {
             font-weight: bold;
             font-size: 1.1rem;
         }
 
-        input, select, button {
-            padding: 0.8rem;
+        #conversionForm input,
+        #conversionForm select,
+        #conversionForm button {
+            padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 1rem;
         }
 
-        button {
+        #conversionForm button {
             background-color: #4CAF50;
             color: white;
             border: none;
@@ -80,45 +78,77 @@
             transition: background-color 0.3s ease;
         }
 
-        button:hover {
+        #conversionForm button:hover {
             background-color: #45a049;
         }
 
+        /* Output Section */
         #output {
-            margin-top: 2rem;
+            margin-top: 20px;
+            display: none;
+        }
+
+        #convertedImage {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        #downloadLink {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #downloadLink:hover {
+            background-color: #45a049;
+        }
+
+        /* Advertisement Section */
+        #advertisement {
+            margin-top: 30px;
             text-align: center;
         }
 
-        #output h3 {
+        #advertisement h2 {
             font-size: 1.5rem;
             color: #4CAF50;
         }
 
-        #uploadedImage, #convertedImage {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-top: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .image-info {
-            margin-top: 0.5rem;
-            font-size: 1rem;
-            color: #666;
-        }
-
-        #advertisement {
-            margin-top: 2rem;
-            text-align: center;
-        }
-
+        /* Footer */
         footer {
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
+            padding: 10px;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            #converter h2 {
+                font-size: 1.5rem;
+            }
+
+            #conversionForm input,
+            #conversionForm select,
+            #conversionForm button {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -129,6 +159,7 @@
     </header>
 
     <main>
+        <!-- Converter Section -->
         <section id="converter">
             <h2>Convert Your Image</h2>
             <form id="conversionForm">
@@ -145,19 +176,14 @@
                 
                 <button type="submit">Convert</button>
             </form>
-
             <div id="output">
-                <h3>Uploaded Image:</h3>
-                <img id="uploadedImage" src="" alt="Uploaded Image">
-                <p class="image-info" id="uploadedImageInfo"></p>
-
                 <h3>Converted Image:</h3>
                 <img id="convertedImage" src="" alt="Converted Image">
-                <p class="image-info" id="convertedImageInfo"></p>
-                <a id="downloadLink" href="#" download>Download Converted Image</a>
+                <a id="downloadLink" href="#" download>Download</a>
             </div>
         </section>
 
+        <!-- Advertisement Section -->
         <section id="advertisement">
             <h2>Advertisement</h2>
             <!-- Google AdSense Ad Unit -->
@@ -181,17 +207,15 @@
     </footer>
 
     <script>
-        // JavaScript for Dynamic Functionality
+        // JavaScript for Image Conversion
         document.getElementById('conversionForm').addEventListener('submit', function(event) {
             event.preventDefault();
             
             const fileInput = document.getElementById('imageInput');
             const formatSelect = document.getElementById('formatSelect');
-            const uploadedImage = document.getElementById('uploadedImage');
-            const uploadedImageInfo = document.getElementById('uploadedImageInfo');
             const convertedImage = document.getElementById('convertedImage');
-            const convertedImageInfo = document.getElementById('convertedImageInfo');
             const downloadLink = document.getElementById('downloadLink');
+            const outputSection = document.getElementById('output');
             
             if (fileInput.files.length === 0) {
                 alert('Please upload an image.');
@@ -202,11 +226,6 @@
             const reader = new FileReader();
             
             reader.onload = function(e) {
-                // Display Uploaded Image
-                uploadedImage.src = e.target.result;
-                uploadedImageInfo.textContent = `Size: ${(file.size / 1024).toFixed(2)} KB | Format: ${file.type}`;
-                
-                // Convert Image
                 const img = new Image();
                 img.src = e.target.result;
                 
@@ -220,9 +239,9 @@
                     canvas.toBlob(function(blob) {
                         const url = URL.createObjectURL(blob);
                         convertedImage.src = url;
-                        convertedImageInfo.textContent = `Size: ${(blob.size / 1024).toFixed(2)} KB | Format: image/${formatSelect.value}`;
                         downloadLink.href = url;
                         downloadLink.download = `converted.${formatSelect.value}`;
+                        outputSection.style.display = 'block';
                     }, `image/${formatSelect.value}`, 0.9);
                 };
             };
