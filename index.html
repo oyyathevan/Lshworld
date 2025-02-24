@@ -1,146 +1,142 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore a wide range of AI tools for images, PDFs, education, business, and more. Boost your productivity with our intelligent solutions.">
-    <meta name="keywords" content="AI tools, image tools, PDF tools, education tools, business tools, AI agentic tools">
-    <meta name="author" content="Your Name">
-    <title>AI Tools Hub</title>
+    <title>Your AI Tools - Home</title>
     <style>
-        /* General Styles */
-        body {
-            font-family: 'Poppins', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
         }
 
         /* Header Styles */
         header {
-            text-align: center;
-            padding: 2rem 1rem;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            background-color: #d9e8f5;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 0;
-            color: #00d2ff; /* Teal accent */
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
         }
 
-        header p {
-            font-size: 1.2rem;
-            margin: 0.5rem 0 0;
-            opacity: 0.8;
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c5d88;
         }
 
-        /* Main Content Styles */
-        main {
-            padding: 2rem;
-            width: 100%;
+        /* Main Content */
+        .container {
             max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
-        /* Section Styles */
-        section {
-            margin-bottom: 3rem;
-        }
-
-        section h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+        .hero {
             text-align: center;
-            color: #00d2ff; /* Teal accent */
+            margin-bottom: 50px;
         }
 
-        /* Card Styles */
-        .card-container {
+        .hero h1 {
+            font-size: 36px;
+            color: #2c5d88;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        /* Tools Section */
+        .tools-section {
+            margin-bottom: 40px;
+        }
+
+        .tools-section h2 {
+            font-size: 28px;
+            color: #2c5d88;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            gap: 20px;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 1.5rem;
+        .tool-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 32px rgba(0, 210, 255, 0.2); /* Teal shadow */
-            background: rgba(0, 210, 255, 0.1); /* Teal hover effect */
+        .tool-card:hover {
+            transform: translateY(-5px);
         }
 
-        .card img {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 1rem;
-            filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.5)); /* Teal glow */
+        .tool-card h3 {
+            font-size: 20px;
+            color: #2c5d88;
+            margin-bottom: 10px;
         }
 
-        .card h3 {
-            font-size: 1.5rem;
-            margin: 0.5rem 0;
-            color: #00d2ff; /* Teal accent */
+        .tool-card p {
+            font-size: 16px;
+            color: #666;
         }
 
-        .card p {
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-
-        /* Footer Styles */
+        /* Footer */
         footer {
-            margin-top: auto;
-            padding: 1rem;
             text-align: center;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            padding: 20px;
+            background-color: #d9e8f5;
+            color: #2c5d88;
+            position: relative;
+            bottom: 0;
             width: 100%;
-        }
-
-        footer p {
-            margin: 0;
-            font-size: 0.9rem;
-            opacity: 0.8;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
+            .hero h1 {
+                font-size: 28px;
             }
 
-            header p {
-                font-size: 1rem;
+            .hero p {
+                font-size: 16px;
             }
 
-            .card-container {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            .tools-section h2 {
+                font-size: 24px;
             }
 
-            .card h3 {
-                font-size: 1.2rem;
+            header {
+                flex-direction: column;
+                text-align: center;
             }
 
-            .card p {
-                font-size: 0.9rem;
+            .logo {
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -148,170 +144,85 @@
 <body>
     <!-- Header -->
     <header>
-        <div>
-     <div class="card">    <img src="Screenshot 2025-02-22 005930.png" alt="LSH-WORLD" Logo width="90" height="90"></div>
-        <div><h1>AI Tools Hub-Lshworld(oyyathevan)</h1>
-        <p>Your one-stop destination for intelligent tools to boost productivity.</p></div> 
-    </div>
+        <img src="Screenshot 2025-02-22 005930.png" alt="Logo" class="logo">
+        <div class="company-name"><h2>AI Tools Hub-Lshworld</h2> </div>
     </header>
 
     <!-- Main Content -->
-    <main>
-        <!-- Image Tools Section -->
-        <section>
-            <h2>Image Tools</h2>
-            <div class="card-container">
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+           
+            <p>Empower your workflow with our cutting-edge AI-powered solutions.</p>
+        </div>
 
-              
-                <a href="/Lshworld/image-comp.html" target="_blank" style="text-decoration: none; color: inherit;">
-    <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/149/149188.png" alt="Image Compressor">
-        <h3>Image Compressor</h3>
-        <p>Compress and optimize images for web use.</p>
-    </div>
-</a>
-
-                  
-                <a href="/Lshworld/gray-image.html" target="_blank" style="text-decoration: none; color: inherit;">
-    <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/149/149188.png" alt="Image Compressor">
-        <h3>Gray scale image processing</h3>
-        <p>Gray scale in image processing for web use.</p>
-    </div>
-</a>
-<style>
-    .card {
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        padding: 20px;
-        text-align: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .card img {
-        width: 64px;
-        height: 64px;
-        margin-bottom: 10px;
-    }
-
-    .card h3 {
-        margin: 0;
-        font-size: 1.5rem;
-    }
-
-    .card p {
-        margin: 10px 0 0;
-        color: #666;
-    }
-</style>          <a href="/Lshworld/rsizeimage.html" target="_blank" style="text-decoration: none; color: inherit;">
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149188.png" alt="Image Resizer">
+        <!-- Image Processing Tools -->
+        <div class="tools-section">
+            <h2>Image Processing Tools</h2>
+            <div class="tools-grid">
+                
+	<a href="/Lshworld/image-comp.html" target="_blank" style="text-decoration: none; color: inherit;">
+		<div class="tool-card">
+                    <h3>Image Compressor</h3>
+                    <p>Compress and optimize images for web use.</p>
+                </div> </a>
+<a href="/Lshworld/gray-image.html" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="tool-card">
+                    <h3>Gray Scale Image Processing</h3>
+                    <p>Gray scale in image processing for web use.</p>
+                </div></a>
+ <a href="/Lshworld/rsizeimage.html" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="tool-card">
                     <h3>Image Resizer</h3>
                     <p>Resize images to any dimension.</p>
-                </div>
-               </a>
-                 <a href="/Lshworld/fconversionimage.html" target="_blank" style="text-decoration: none; color: inherit;">
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149188.png" alt="Image Converter">
+                </div></a>
+ <a href="/Lshworld/fconversionimage.html" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="tool-card">
                     <h3>Image Converter</h3>
                     <p>Convert images to different formats.</p>
-                </div> </a>
-            </div>
-        </section>
+                </div></a>
 
-        <!-- PDF Tools Section -->
-        <section>
-            <h2>PDF Tools</h2>
-            <div class="card-container">
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149188.png" alt="PDF Compressor">
+            </div>
+        </div>
+
+        <!-- PDF Processing Tools -->
+        <div class="tools-section">
+            <h2>PDF Processing Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
                     <h3>PDF Compressor</h3>
                     <p>Reduce the size of your PDF files.</p>
                 </div>
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149188.png" alt="PDF Merger">
+                <div class="tool-card">
                     <h3>PDF Merger</h3>
                     <p>Merge multiple PDFs into one.</p>
                 </div>
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149188.png" alt="PDF Splitter">
+                <div class="tool-card">
                     <h3>PDF Splitter</h3>
                     <p>Split PDFs into individual pages.</p>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- AI Agentic Tools Section -->
-        <section>
-            <h2>AI Agentic Tools</h2>
-            <div class="card-container">
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149188.png" alt="AI Chatbot">
-                    <h3>AI Chatbot</h3>
-                    <p>Automate customer support with AI.</p>
+        <!-- Other Tools -->
+        <div class="tools-section">
+            <h2>More AI Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3>AI Agentic Tools</h3>
+                    <p>Intelligent agents for automation and assistance.</p>
                 </div>
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149188.png" alt="AI Writer">
-                    <h3>AI Writer</h3>
-                    <p>Generate content with AI-powered writing.</p>
+                <div class="tool-card">
+                    <h3>Education Tools</h3>
+                    <p>Enhance learning with AI-driven solutions.</p>
                 </div>
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149188.png" alt="AI Analyzer">
-                    <h3>AI Analyzer</h3>
-                    <p>Analyze data with AI insights.</p>
+                <div class="tool-card">
+                    <h3>Business Tools</h3>
+                    <p>Streamline operations with AI technology.</p>
                 </div>
             </div>
-        </section>
-
-        <!-- Education Tools Section -->
-        <section>
-            <h2>Education Tools</h2>
-            <div class="card-container">
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149188.png" alt="Quiz Generator">
-                    <h3>Quiz Generator</h3>
-                    <p>Create quizzes automatically.</p>
-                </div>
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149188.png" alt="Flashcards">
-                    <h3>Flashcards</h3>
-                    <p>Generate flashcards for studying.</p>
-                </div>
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149188.png" alt="Plagiarism Checker">
-                    <h3>Plagiarism Checker</h3>
-                    <p>Check for plagiarism in documents.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Business Tools Section -->
-        <section>
-            <h2>Business Tools</h2>
-            <div class="card-container">
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149188.png" alt="Invoice Generator">
-                    <h3>Invoice Generator</h3>
-                    <p>Create professional invoices.</p>
-                </div>
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149188.png" alt="Expense Tracker">
-                    <h3>Expense Tracker</h3>
-                    <p>Track and manage expenses.</p>
-                </div>
-                <div class="card"> 
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149188.png" alt="Project Manager">
-                    <h3>Project Manager</h3>
-                    <p>Manage projects efficiently.</p>
-                </div>
-            </div>
-        </section>
-    </main>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
