@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Resize your images dynamically with our responsive image resize tool. Optimize images for web use with ease.">
+    <meta name="keywords" content="image resize, image optimization, responsive tool, web images">
+    <meta name="author" content="Your Name">
+    <title>Responsive Image Resize Tool</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+
+        header {
+            background-color: #4a90e2;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #4a90e2;
+            margin-bottom: 10px;
+        }
+
+        /* Tool Section */
+        #tool {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        #tool input[type="file"] {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            border: 2px dashed #4a90e2;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+
+        #tool input[type="number"],
+        #tool select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 5px;
+            width: 100px;
+        }
+
+        #tool button {
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        #tool button:hover {
+            background-color: #357abd;
+        }
+
+        /* Image Container */
+        #imageContainer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #imageContainer img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #imageContainer p {
+            margin: 10px 0;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #4a90e2;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            #tool input[type="number"],
+            #tool select {
+                width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Image Resize Tool</h1>
+    </header>
+    <main>
+        <!-- Image Resize Tool -->
+        <section id="tool">
+            <h2>Upload and Resize Image</h2>
+            <input type="file" id="imageInput" accept="image/*">
+            <div id="sizeOptions">
+                <input type="number" id="widthInput" placeholder="Width (px)" min="1">
+                <input type="number" id="heightInput" placeholder="Height (px)" min="1">
+                <select id="presetSizes">
+                    <option value="custom">Custom Size</option>
+                    <option value="100x100">100x100</option>
+                    <option value="200x200">200x200</option>
+                    <option value="300x300">300x300</option>
+                    <option value="500x500">500x500</option>
+                    <option value="800x600">800x600</option>
+                </select>
+            </div>
+            <button onclick="resizeImage()">Resize Image</button>
+        </section>
+
+        <!-- Image Display Section -->
+        <section id="imageContainer">
+            <h2>Resized Image</h2>
+            <img id="resizedImage" src="" alt="Resized Image">
+            <p id="imageSize"></p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Image Resize Tool. All rights reserved.</p>
+    </footer>
+    <script>
+        // Function to resize the image
+        function resizeImage() {
+            const imageInput = document.getElementById('imageInput');
+            const widthInput = document.getElementById('widthInput');
+            const heightInput = document.getElementById('heightInput');
+            const presetSizes = document.getElementById('presetSizes');
+            const resizedImage = document.getElementById('resizedImage');
+            const imageSize = document.getElementById('imageSize');
+
+            if (imageInput.files && imageInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.src = e.target.result;
+
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+
+                        // Get selected size
+                        let width, height;
+                        if (presetSizes.value !== "custom") {
+                            const size = presetSizes.value.split('x');
+                            width = parseInt(size[0]);
+                            height = parseInt(size[1]);
+                        } else {
+                            width = parseInt(widthInput.value);
+                            height = parseInt(heightInput.value);
+                        }
+
+                        // Set canvas dimensions
+                        canvas.width = width;
+                        canvas.height = height;
+
+                        // Draw the resized image
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        // Display the resized image
+                        resizedImage.src = canvas.toDataURL('image/jpeg');
+                        imageSize.textContent = `Resized Image Size: ${width}px x ${height}px`;
+                    };
+                };
+
+                reader.readAsDataURL(imageInput.files[0]);
+            } else {
+                alert("Please upload an image first.");
+            }
+        }
+
+        // Update width and height inputs when a preset is selected
+        document.getElementById('presetSizes').addEventListener('change', function() {
+            const size = this.value.split('x');
+            if (size.length === 2) {
+                document.getElementById('widthInput').value = size[0];
+                document.getElementById('heightInput').value = size[1];
+            }
+        });
+    </script>
+</body>
+</html>
