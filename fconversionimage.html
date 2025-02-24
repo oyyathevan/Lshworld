@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert and optimize images online. Supports multiple formats like JPEG, PNG, GIF, and WebP. Fast, easy, and SEO-friendly.">
+    <meta name="keywords" content="image converter, image optimization, JPEG, PNG, GIF, WebP, SEO">
+    <meta name="author" content="Your Name">
+    <title>Image Format Converter</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Converter Section */
+        #converter {
+            text-align: center;
+        }
+
+        #converter h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #4CAF50;
+        }
+
+        #conversionForm {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #conversionForm label {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        #conversionForm input,
+        #conversionForm select,
+        #conversionForm button {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        #conversionForm button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #conversionForm button:hover {
+            background-color: #45a049;
+        }
+
+        /* Output Section */
+        #output {
+            margin-top: 20px;
+            display: none;
+        }
+
+        #convertedImage {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        #downloadLink {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #downloadLink:hover {
+            background-color: #45a049;
+        }
+
+        /* Advertisement Section */
+        #advertisement {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        #advertisement h2 {
+            font-size: 1.5rem;
+            color: #4CAF50;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            #converter h2 {
+                font-size: 1.5rem;
+            }
+
+            #conversionForm input,
+            #conversionForm select,
+            #conversionForm button {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Image Format Converter</h1>
+        <p>Convert and optimize your images easily!</p>
+    </header>
+
+    <main>
+        <!-- Converter Section -->
+        <section id="converter">
+            <h2>Convert Your Image</h2>
+            <form id="conversionForm">
+                <label for="imageInput">Upload Image:</label>
+                <input type="file" id="imageInput" accept="image/*" required>
+                
+                <label for="formatSelect">Convert To:</label>
+                <select id="formatSelect" required>
+                    <option value="jpeg">JPEG</option>
+                    <option value="png">PNG</option>
+                    <option value="gif">GIF</option>
+                    <option value="webp">WebP</option>
+                </select>
+                
+                <button type="submit">Convert</button>
+            </form>
+            <div id="output">
+                <h3>Converted Image:</h3>
+                <img id="convertedImage" src="" alt="Converted Image">
+                <a id="downloadLink" href="#" download>Download</a>
+            </div>
+        </section>
+
+        <!-- Advertisement Section -->
+        <section id="advertisement">
+            <h2>Advertisement</h2>
+            <!-- Google AdSense Ad Unit -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_SENSE_ID"
+                    crossorigin="anonymous"></script>
+            <!-- Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_AD_SENSE_ID"
+                 data-ad-slot="YOUR_AD_SLOT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Image Format Converter. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript for Image Conversion
+        document.getElementById('conversionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const fileInput = document.getElementById('imageInput');
+            const formatSelect = document.getElementById('formatSelect');
+            const convertedImage = document.getElementById('convertedImage');
+            const downloadLink = document.getElementById('downloadLink');
+            const outputSection = document.getElementById('output');
+            
+            if (fileInput.files.length === 0) {
+                alert('Please upload an image.');
+                return;
+            }
+            
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const img = new Image();
+                img.src = e.target.result;
+                
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                    
+                    canvas.toBlob(function(blob) {
+                        const url = URL.createObjectURL(blob);
+                        convertedImage.src = url;
+                        downloadLink.href = url;
+                        downloadLink.download = `converted.${formatSelect.value}`;
+                        outputSection.style.display = 'block';
+                    }, `image/${formatSelect.value}`, 0.9);
+                };
+            };
+            
+            reader.readAsDataURL(file);
+        });
+    </script>
+</body>
+</html>
