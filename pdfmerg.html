@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free online PDF merger tool by Lshworld-AI Tools Hub - Combine multiple PDFs with stylish watermarking.">
+    <meta name="description" content="Free online PDF merger tool by Lshworld-AI Tools Hub - Combine page ranges from multiple PDFs with watermarking.">
     <meta name="keywords" content="PDF merger, combine PDFs, merge PDF files, free PDF tool, Lshworld-AI Tools Hub">
     <meta name="author" content="Lshworld-AI Tools Hub">
-    <title>PDF Merger - Muvin AI Tools Hub</title>
+    <title>Muvin - Multiple PDF file and random page number PDF Merger - AI Tools Hub</title>
     
     <style>
         * {
@@ -37,7 +37,6 @@
             padding: 40px 20px;
             text-align: center;
             color: white;
-            position: relative;
         }
 
         header h1 {
@@ -53,12 +52,6 @@
 
         .upload-area {
             padding: 40px;
-            position: relative;
-        }
-
-        .file-input-wrapper {
-            position: relative;
-            margin-bottom: 30px;
         }
 
         .file-input-wrapper input {
@@ -69,6 +62,7 @@
             background: #f8f9ff;
             cursor: pointer;
             transition: all 0.3s;
+            margin-bottom: 20px;
         }
 
         .file-input-wrapper input:hover {
@@ -78,7 +72,6 @@
 
         .file-list {
             margin: 20px 0;
-            min-height: 100px;
             max-height: 300px;
             overflow-y: auto;
         }
@@ -97,6 +90,14 @@
 
         .file-item:hover {
             transform: translateY(-2px);
+        }
+
+        .file-item input[type="number"] {
+            width: 70px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 0 5px;
         }
 
         .file-item button {
@@ -154,40 +155,21 @@
         }
 
         @media (max-width: 768px) {
-            .container {
-                margin: 0 10px;
-            }
-
-            header h1 {
-                font-size: 1.8em;
-            }
-
-            .upload-area {
-                padding: 20px;
-            }
-
-            .file-item {
-                flex-direction: column;
-                text-align: center;
-                padding: 10px;
-            }
-
-            .file-item button {
-                margin-top: 10px;
-            }
-
-            .button-group {
-                flex-direction: column;
-                gap: 10px;
-            }
+            .container { margin: 0 10px; }
+            header h1 { font-size: 1.8em; }
+            .upload-area { padding: 20px; }
+            .file-item { flex-direction: column; text-align: center; padding: 10px; }
+            .file-item input[type="number"], .file-item button { margin-top: 10px; }
+            .button-group { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>PDF Merger Tool</h1>
-            <p> Muvin - AI Tools Hub</p>
+          <h1> Multiple PDF file and Random  PDF page number Merger </h1>
+            <p>by Muvin - AI Tools Hub</p>
+
         </header>
 
         <!-- Top Ad Space -->
@@ -237,9 +219,18 @@
     <script>
         let filesArray = [];
 
-        document.getElementById('pdfFiles').addEventListener('change', function(e) {
+        document.getElementById('pdfFiles').addEventListener('change', async function(e) {
             const newFiles = Array.from(e.target.files);
-            filesArray = [...filesArray, ...newFiles];
+            for (const file of newFiles) {
+                const arrayBuffer = await file.arrayBuffer();
+                const pdf = await PDFLib.PDFDocument.load(arrayBuffer);
+                filesArray.push({ 
+                    file, 
+                    totalPages: pdf.getPageCount(), 
+                    startPage: 1, 
+                    endPage: pdf.getPageCount() 
+                });
+            }
             updateFileList();
             clearFileInput();
         });
@@ -256,15 +247,39 @@
             const fileList = document.getElementById('fileList');
             fileList.innerHTML = '';
             
-            filesArray.forEach((file, index) => {
+            filesArray.forEach((item, index) => {
                 const div = document.createElement('div');
                 div.className = 'file-item';
                 div.innerHTML = `
-                    ${file.name} (${(file.size / 1024).toFixed(2)} KB)
+                    ${item.file.name} (${(item.file.size / 1024).toFixed(2)} KB, ${item.totalPages} pages)
+                    <div>
+                        From: <input type="number" min="1" max="${item.totalPages}" value="${item.startPage}" onchange="updateStartPage(${index}, this.value)">
+                        To: <input type="number" min="1" max="${item.totalPages}" value="${item.endPage}" onchange="updateEndPage(${index}, this.value)">
+                    </div>
                     <button onclick="removeFile(${index})">Remove</button>
                 `;
                 fileList.appendChild(div);
             });
+        }
+
+        function updateStartPage(index, value) {
+            const num = parseInt(value);
+            if (num >= 1 && num <= filesArray[index].endPage) {
+                filesArray[index].startPage = num;
+            } else {
+                alert(`Start page must be between 1 and ${filesArray[index].endPage}`);
+                updateFileList();
+            }
+        }
+
+        function updateEndPage(index, value) {
+            const num = parseInt(value);
+            if (num >= filesArray[index].startPage && num <= filesArray[index].totalPages) {
+                filesArray[index].endPage = num;
+            } else {
+                alert(`End page must be between ${filesArray[index].startPage} and ${filesArray[index].totalPages}`);
+                updateFileList();
+            }
         }
 
         function removeFile(index) {
@@ -273,8 +288,8 @@
         }
 
         async function mergePDFs() {
-            if (filesArray.length < 2) {
-                alert('Please upload at least 2 PDF files to merge');
+            if (filesArray.length === 0) {
+                alert('Please upload at least one PDF file');
                 return;
             }
 
@@ -282,10 +297,16 @@
 
             const mergedPdf = await PDFLib.PDFDocument.create();
             
-            for (const file of filesArray) {
-                const arrayBuffer = await file.arrayBuffer();
-                const pdf = await PDFLib.PDFDocument.load(arrayBuffer);
-                const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+            for (const item of filesArray) {
+                const pdf = await PDFLib.PDFDocument.load(await item.file.arrayBuffer());
+                const startIndex = item.startPage - 1; // Convert to 0-based index
+                const endIndex = item.endPage - 1;     // Convert to 0-based index
+                const pageIndices = Array.from(
+                    { length: endIndex - startIndex + 1 }, 
+                    (_, i) => startIndex + i
+                ).filter(index => index >= 0 && index < item.totalPages);
+
+                const copiedPages = await mergedPdf.copyPages(pdf, pageIndices);
                 
                 copiedPages.forEach((page) => {
                     const { width, height } = page.getSize();
@@ -312,11 +333,9 @@
             document.getElementById('progress').style.display = 'none';
         }
     </script>
-<!-- Footer -->
-    <footer>
-       <center> <p>&copy; 2025 S.Oyyathevan - PDF Merg Tools All rights reserved.</p></center>
-    </footer>
-</body>
+<footer>
+           <center> <p>© 2025 S.Oyyathevan AI Tools Hub. All rights reserved</p></center>
+        </footer>
 
 </body>
 </html>
