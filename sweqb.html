@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Software Engineering Question Bank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2d3436;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        header {
+            background: linear-gradient(90deg, #6c5ce7, #00cec9);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        header button {
+            margin-top: 1rem;
+            padding: 0.7rem 1.5rem;
+            background: #ff7675;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        header button:hover {
+            transform: scale(1.05);
+            background: #e84393;
+        }
+
+        nav {
+            background: #2d3436;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: #dfe6e9;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: #00b894;
+            color: white;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        #search {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            outline: none;
+            transition: box-shadow 0.3s;
+        }
+
+        #search:focus {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        section {
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #6c5ce7;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #00cec9;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #e84393;
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        h3 i {
+            margin-right: 0.5rem;
+            color: #ff7675;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .five-mark th {
+            background: #6c5ce7;
+            color: white;
+            font-weight: 600;
+        }
+
+        .two-mark th {
+            background: #00b894;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        tr:hover {
+            background: #f1f2f6;
+        }
+
+        .answer {
+            display: none;
+            color: #636e72;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(90deg, #2d3436, #636e72);
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 0.8rem 1rem;
+            background: #ff7675;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        #back-to-top:hover {
+            background: #e84393;
+            transform: scale(1.1);
+        }
+
+        #back-to-top.show {
+            display: block;
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+            color: #dfe6e9;
+        }
+
+        .dark-mode section {
+            background: #2d3436;
+        }
+
+        .dark-mode table {
+            background: #3d4446;
+        }
+
+        .dark-mode #search {
+            background: #3d4446;
+            color: #dfe6e9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            main {
+                padding: 0 0.5rem;
+            }
+
+            section {
+                padding: 1rem;
+            }
+
+            table, th, td {
+                font-size: 0.9rem;
+                padding: 0.8rem;
+            }
+
+            th:nth-child(3), td:nth-child(3) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📚 Software Engineering Question Bank</h1>
+        <p>Academic Year: 2024-25 | B.Tech (CST) | Year II | Semester II</p>
+        <p>Course Code: 23CTCTT4050 | Faculty: S.Oyyathevan</p>
+        <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#unit1">Unit 1 🚀</a></li>
+            <li><a href="#unit2">Unit 2 ⚙️</a></li>
+            <li><a href="#unit3">Unit 3 🎨</a></li>
+            <li><a href="#unit4">Unit 4 🛠️</a></li>
+            <li><a href="#unit5">Unit 5 📊</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <input type="text" id="search" placeholder="🔍 Search questions..." onkeyup="searchQuestions()">
+        
+        <!-- Unit 1 -->
+        <section id="unit1">
+            <h2>Unit 1: Introduction and Software Life Cycle Models (CO1)</h2>
+            <h3><i class="fas fa-book"></i>5-Mark Questions 🌟</h3>
+            <table class="five-mark">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Question</th>
+                        <th>Key Points</th>
+                        <th>BTL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 1">
+                        <td>1</td>
+                        <td>Explain the evolution of software engineering with notable changes.</td>
+                        <td class="answer">Software engineering evolved from ad-hoc coding to structured methods; notable changes include automation and agile practices.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 2">
+                        <td>2</td>
+                        <td>Discuss the exploratory style of software development and its limitations.</td>
+                        <td class="answer">Exploratory style is trial-and-error; limited by scalability, lack of planning, and poor documentation.</td>
+                        <td>4</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 3">
+                        <td>3</td>
+                        <td>Describe the basic concepts of software life cycle models.</td>
+                        <td class="answer">Life cycle models define phases like planning, design, coding, testing for systematic development.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 4">
+                        <td>4</td>
+                        <td>Compare the Waterfall model with its extensions.</td>
+                        <td class="answer">Waterfall is linear; extensions like V-model add feedback and testing focus.</td>
+                        <td>4</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 5">
+                        <td>5</td>
+                        <td>Illustrate the phases of the Rapid Application Development (RAD) model.</td>
+                        <td class="answer">RAD phases: requirements planning, user design, construction, cutover with prototyping focus.</td>
+                        <td>3</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 6">
+                        <td>6</td>
+                        <td>Evaluate the suitability of the Agile development model for small projects.</td>
+                        <td class="answer">Agile suits small projects due to flexibility, quick iterations, and team collaboration.</td>
+                        <td>5</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 7">
+                        <td>7</td>
+                        <td>Explain the Spiral model with its risk-driven approach.</td>
+                        <td class="answer">Spiral model iterates through planning, risk analysis, engineering, evaluation to manage risks.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 8">
+                        <td>8</td>
+                        <td>Analyze the key differences between Agile and Waterfall models.</td>
+                        <td class="answer">Agile is iterative and adaptive; Waterfall is linear and rigid with less customer feedback.</td>
+                        <td>4</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 9">
+                        <td>9</td>
+                        <td>Discuss how computer system engineering integrates with software engineering.</td>
+                        <td class="answer">System engineering designs hardware-software integration; software engineering focuses on software.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 10">
+                        <td>10</td>
+                        <td>Assess the impact of notable changes in software development practices.</td>
+                        <td class="answer">Changes like tools and collaboration improved productivity, quality, and delivery speed.</td>
+                        <td>5</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 11">
+                        <td>11</td>
+                        <td>Design a scenario where the Spiral model is more effective than Waterfall.</td>
+                        <td class="answer">High-risk project like space software benefits from Spiral’s risk focus over Waterfall’s rigidity.</td>
+                        <td>3</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 12">
+                        <td>12</td>
+                        <td>Explain the iterative nature of the Agile development model.</td>
+                        <td class="answer">Agile uses short cycles (sprints) with continuous feedback and adaptability to changes.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 13">
+                        <td>13</td>
+                        <td>Compare the adaptability of RAD and Spiral models in dynamic projects.</td>
+                        <td class="answer">RAD is faster with prototyping; Spiral focuses on risk, both adapt well to dynamic needs.</td>
+                        <td>4</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 14">
+                        <td>14</td>
+                        <td>Discuss the role of prototyping in software life cycle models.</td>
+                        <td class="answer">Prototyping validates requirements, reduces risks, and gathers user feedback early.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 15">
+                        <td>15</td>
+                        <td>Evaluate the challenges in transitioning from exploratory to structured development.</td>
+                        <td class="answer">Challenges include resistance, skill gaps, and need for documentation in structured methods.</td>
+                        <td>5</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3><i class="fas fa-book-open"></i>2-Mark Questions ✨</h3>
+            <table class="two-mark">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Question</th>
+                        <th>Key Points</th>
+                        <th>BTL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 1">
+                        <td>1</td>
+                        <td>What is the exploratory style of software development?</td>
+                        <td class="answer">Trial-and-error approach with no formal process.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 2">
+                        <td>2</td>
+                        <td>Define software engineering.</td>
+                        <td class="answer">Systematic approach to software design and maintenance.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 3">
+                        <td>3</td>
+                        <td>List two notable changes in software practices.</td>
+                        <td class="answer">Automation, structured programming.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 4">
+                        <td>4</td>
+                        <td>What is the purpose of the Waterfall model?</td>
+                        <td class="answer">Sequential development with clear milestones.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 5">
+                        <td>5</td>
+                        <td>Name two extensions of the Waterfall model.</td>
+                        <td class="answer">V-model, Incremental Waterfall.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 6">
+                        <td>6</td>
+                        <td>What is the key feature of RAD?</td>
+                        <td class="answer">Rapid prototyping for quick delivery.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 7">
+                        <td>7</td>
+                        <td>State the primary focus of the Agile model.</td>
+                        <td class="answer">Customer collaboration and adaptability.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 8">
+                        <td>8</td>
+                        <td>What is the role of risk in the Spiral model?</td>
+                        <td class="answer">Drives iterations and decision-making.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 9">
+                        <td>9</td>
+                        <td>Differentiate between iterative and incremental development.</td>
+                        <td class="answer">Iterative refines; incremental adds features.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 10">
+                        <td>10</td>
+                        <td>What is computer system engineering?</td>
+                        <td class="answer">Integrates hardware and software systems.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 11">
+                        <td>11</td>
+                        <td>List two advantages of the Agile model.</td>
+                        <td class="answer">Flexibility, faster delivery.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 12">
+                        <td>12</td>
+                        <td>What is the significance of life cycle models?</td>
+                        <td class="answer">Provide structure and predictability.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 13">
+                        <td>13</td>
+                        <td>What is prototyping in software development?</td>
+                        <td class="answer">Early model for validation and feedback.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 14">
+                        <td>14</td>
+                        <td>Name two limitations of the Waterfall model.</td>
+                        <td class="answer">Rigidity, late testing.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 15">
+                        <td>15</td>
+                        <td>What is the benefit of the Spiral model?</td>
+                        <td class="answer">Reduces risks through iterations.</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Unit 2 -->
+        <section id="unit2">
+            <h2>Unit 2: Requirements Analysis and Specification, Software Design, Agility (CO2)</h2>
+            <h3><i class="fas fa-book"></i>5-Mark Questions 🌟</h3>
+            <table class="five-mark">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Question</th>
+                        <th>Key Points</th>
+                        <th>BTL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 1">
+                        <td>1</td>
+                        <td>Explain the process of requirements gathering and analysis.</td>
+                        <td class="answer">Involves elicitation, stakeholder interviews, analysis, and validation of requirements.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 2">
+                        <td>2</td>
+                        <td>Discuss the components of a Software Requirements Specification (SRS).</td>
+                        <td class="answer">Includes functional/non-functional reqs, scope, constraints, and use cases.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 3">
+                        <td>3</td>
+                        <td>Compare axiomatic and algebraic specifications with examples.</td>
+                        <td class="answer">Axiomatic uses logic (e.g., pre/postconditions); algebraic uses equations (e.g., stack operations).</td>
+                        <td>4</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 4">
+                        <td>4</td>
+                        <td>Illustrate the use of executable specification in software development.</td>
+                        <td class="answer">Executable spec. simulates system behavior, e.g., a calculator prototype.</td>
+                        <td>3</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 5">
+                        <td>5</td>
+                        <td>Evaluate the role of 4GL in requirements specification.</td>
+                        <td class="answer">4GL simplifies spec. with high-level tools but lacks precision for complex systems.</td>
+                        <td>5</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 6">
+                        <td>6</td>
+                        <td>Describe the software design process with its key phases.</td>
+                        <td class="answer">Phases: architectural design, detailed design, review based on requirements.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 7">
+                        <td>7</td>
+                        <td>Analyze the characteristics of a good software design.</td>
+                        <td class="answer">Modular, simple, maintainable, reusable, scalable design traits.</td>
+                        <td>4</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 8">
+                        <td>8</td>
+                        <td>Explain cohesion and coupling with examples.</td>
+                        <td class="answer">Cohesion: module focus (e.g., data processing); coupling: module dependency (e.g., shared data).</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 9">
+                        <td>9</td>
+                        <td>Discuss layered arrangement of modules in software design.</td>
+                        <td class="answer">Layers separate concerns (e.g., UI, logic, data) for modularity and maintenance.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 10">
+                        <td>10</td>
+                        <td>Assess the impact of agility on the cost of change in software projects.</td>
+                        <td class="answer">Agility lowers cost via early feedback and iterative changes compared to rigid models.</td>
+                        <td>5</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 11">
+                        <td>11</td>
+                        <td>Explain the Extreme Programming (XP) process in detail.</td>
+                        <td class="answer">XP uses pair programming, TDD, continuous integration, and short iterations.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 12">
+                        <td>12</td>
+                        <td>Compare different approaches to software design.</td>
+                        <td class="answer">Structured (top-down), OO (objects), agile (iterative) differ in focus and flexibility.</td>
+                        <td>4</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 13">
+                        <td>13</td>
+                        <td>Discuss the toolset used in the Agile process.</td>
+                        <td class="answer">Tools like Jira, Git, CI/CD systems support collaboration and automation.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 14">
+                        <td>14</td>
+                        <td>Design an SRS outline for a library management system.</td>
+                        <td class="answer">SRS with functional reqs (e.g., book issue), constraints (e.g., user limit), and use cases.</td>
+                        <td>3</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 15">
+                        <td>15</td>
+                        <td>Evaluate the benefits of modular design in software engineering.</td>
+                        <td class="answer">Modularity improves reusability, maintainability, and testing efficiency.</td>
+                        <td>5</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3><i class="fas fa-book-open"></i>2-Mark Questions ✨</h3>
+            <table class="two-mark">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Question</th>
+                        <th>Key Points</th>
+                        <th>BTL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 1">
+                        <td>1</td>
+                        <td>What is requirements analysis?</td>
+                        <td class="answer">Refining and validating user needs.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 2">
+                        <td>2</td>
+                        <td>List two components of an SRS.</td>
+                        <td class="answer">Functional reqs, non-functional reqs.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 3">
+                        <td>3</td>
+                        <td>Define axiomatic specification.</td>
+                        <td class="answer">Logic-based formal method.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 4">
+                        <td>4</td>
+                        <td>What is the purpose of algebraic specification?</td>
+                        <td class="answer">Define abstract data types.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 5">
+                        <td>5</td>
+                        <td>What is 4GL in software engineering?</td>
+                        <td class="answer">High-level language for rapid development.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 6">
+                        <td>6</td>
+                        <td>State the goal of software design.</td>
+                        <td class="answer">Create a blueprint for implementation.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 7">
+                        <td>7</td>
+                        <td>Define cohesion in software design.</td>
+                        <td class="answer">Degree of module focus.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 8">
+                        <td>8</td>
+                        <td>What is coupling?</td>
+                        <td class="answer">Inter-module dependency.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 9">
+                        <td>9</td>
+                        <td>What is agility in software development?</td>
+                        <td class="answer">Flexibility to adapt to changes.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 10">
+                        <td>10</td>
+                        <td>Name two practices in Extreme Programming (XP).</td>
+                        <td class="answer">Pair programming, TDD.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 11">
+                        <td>11</td>
+                        <td>List two benefits of a layered design.</td>
+                        <td class="answer">Modularity, maintainability.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 12">
+                        <td>12</td>
+                        <td>What is the cost of change in agile projects?</td>
+                        <td class="answer">Lower due to iterative approach.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 13">
+                        <td>13</td>
+                        <td>What is a modular design?</td>
+                        <td class="answer">System split into independent modules.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 14">
+                        <td>14</td>
+                        <td>Name two tools used in Agile processes.</td>
+                        <td class="answer">Jira, Git.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 15">
+                        <td>15</td>
+                        <td>What is the purpose of an SRS?</td>
+                        <td class="answer">Clearly define system requirements.</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Unit 3 -->
+        <section id="unit3">
+            <h2>Unit 3: Function-Oriented Software Design and User Interface Design (CO3)</h2>
+            <h3><i class="fas fa-book"></i>5-Mark Questions 🌟</h3>
+            <table class="five-mark">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Question</th>
+                        <th>Key Points</th>
+                        <th>BTL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 1">
+                        <td>1</td>
+                        <td>Explain the SA/SD methodology in function-oriented design.</td>
+                        <td class="answer">SA/SD uses structured analysis (DFDs) and design (module hierarchy) for systematic development.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 2">
+                        <td>2</td>
+                        <td>Discuss the steps to develop a DFD model for a system.</td>
+                        <td class="answer">Steps: identify processes, data flows, stores, and external entities; refine levels.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 3">
+                        <td>3</td>
+                        <td>Analyze the role of structured analysis in software design.</td>
+                        <td class="answer">Structured analysis maps requirements to DFDs for clarity; limited by complexity handling.</td>
+                        <td>4</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 4">
+                        <td>4</td>
+                        <td>Illustrate structured design with an example system.</td>
+                        <td class="answer">Structured design creates modules (e.g., payroll: input, calculate, output) from analysis.</td>
+                        <td>3</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 5">
+                        <td>5</td>
+                        <td>Evaluate the importance of detailed design in SA/SD methodology.</td>
+                        <td class="answer">Detailed design ensures precision and readiness for coding, reducing errors.</td>
+                        <td>5</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 6">
+                        <td>6</td>
+                        <td>Explain the design review process in function-oriented design.</td>
+                        <td class="answer">Peer review checks design for errors, consistency, and quality before implementation.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 7">
+                        <td>7</td>
+                        <td>Discuss the characteristics of a good user interface.</td>
+                        <td class="answer">Usable, consistent, responsive, simple, and accessible UI enhances user experience.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 8">
+                        <td>8</td>
+                        <td>Compare different types of user interfaces with examples.</td>
+                        <td class="answer">CLI (e.g., DOS) vs GUI (e.g., Windows) vs touch (e.g., mobile) differ in interaction style.</td>
+                        <td>4</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 9">
+                        <td>9</td>
+                        <td>Describe the fundamentals of component-based GUI development.</td>
+                        <td class="answer">Uses reusable components (e.g., buttons) and event-driven design for modularity.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 10">
+                        <td>10</td>
+                        <td>Design a user interface for an online shopping system.</td>
+                        <td class="answer">UI with navigation bar, product list, cart button, and checkout feedback.</td>
+                        <td>3</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 11">
+                        <td>11</td>
+                        <td>Analyze the user interface design methodology with its phases.</td>
+                        <td class="answer">Phases: requirement analysis, prototyping, testing, iteration for user-centric design.</td>
+                        <td>4</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 12">
+                        <td>12</td>
+                        <td>Explain how DFDs support structured analysis.</td>
+                        <td class="answer">DFDs visualize data flow, processes, and interactions for clear system understanding.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 13">
+                        <td>13</td>
+                        <td>Evaluate the challenges in designing user-friendly interfaces.</td>
+                        <td class="answer">Diverse users, complexity, and feedback issues complicate UI design.</td>
+                        <td>5</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 14">
+                        <td>14</td>
+                        <td>Discuss the role of feedback in user interface design.</td>
+                        <td class="answer">Feedback guides users, prevents errors, and improves interaction (e.g., form validation).</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 15">
+                        <td>15</td>
+                        <td>Assess the impact of poor UI design on software usability.</td>
+                        <td class="answer">Poor UI causes frustration, inefficiency, and abandonment (e.g., unclear navigation).</td>
+                        <td>5</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3><i class="fas fa-book-open"></i>2-Mark Questions ✨</h3>
+            <table class="two-mark">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Question</th>
+                        <th>Key Points</th>
+                        <th>BTL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 1">
+                        <td>1</td>
+                        <td>What is SA/SD methodology?</td>
+                        <td class="answer">Structured analysis and design.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 2">
+                        <td>2</td>
+                        <td>Define structured analysis.</td>
+                        <td class="answer">Requirement analysis using DFDs.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 3">
+                        <td>3</td>
+                        <td>What is a DFD model?</td>
+                        <td class="answer">Diagram of data flow in a system.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 4">
+                        <td>4</td>
+                        <td>State the purpose of structured design.</td>
+                        <td class="answer">Convert analysis into modular design.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 5">
+                        <td>5</td>
+                        <td>What is detailed design?</td>
+                        <td class="answer">Fine-tuned design for coding.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 6">
+                        <td>6</td>
+                        <td>List two characteristics of a good UI.</td>
+                        <td class="answer">Usability, consistency.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 7">
+                        <td>7</td>
+                        <td>Name two types of user interfaces.</td>
+                        <td class="answer">GUI, CLI.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 8">
+                        <td>8</td>
+                        <td>What is component-based GUI development?</td>
+                        <td class="answer">Uses reusable UI components.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 9">
+                        <td>9</td>
+                        <td>What is the role of design review?</td>
+                        <td class="answer">Ensure design quality.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 10">
+                        <td>10</td>
+                        <td>Define user interface design methodology.</td>
+                        <td class="answer">Systematic UI design process.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 11">
+                        <td>11</td>
+                        <td>What is the significance of feedback in UI?</td>
+                        <td class="answer">Improves user interaction.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 12">
+                        <td>12</td>
+                        <td>List two tools used in structured analysis.</td>
+                        <td class="answer">DFD tools, CASE tools.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 13">
+                        <td>13</td>
+                        <td>What is a good UI characteristic?</td>
+                        <td class="answer">Responsiveness.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 14">
+                        <td>14</td>
+                        <td>Name two components of a GUI.</td>
+                        <td class="answer">Buttons, text fields.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 15">
+                        <td>15</td>
+                        <td>What is the purpose of a DFD?</td>
+                        <td class="answer">Visualize system data flow.</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Unit 4 -->
+        <section id="unit4">
+            <h2>Unit 4: Coding and Testing, Software Reliability and Quality Management (CO4)</h2>
+            <h3><i class="fas fa-book"></i>5-Mark Questions 🌟</h3>
+            <table class="five-mark">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Question</th>
+                        <th>Key Points</th>
+                        <th>BTL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 1">
+                        <td>1</td>
+                        <td>Explain the coding process and its best practices.</td>
+                        <td class="answer">Coding involves writing, testing code; best practices: readability, modularity, comments.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 2">
+                        <td>2</td>
+                        <td>Discuss the importance of code review in software development.</td>
+                        <td class="answer">Code review detects errors, improves quality, and fosters collaboration.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 3">
+                        <td>3</td>
+                        <td>Analyze the differences between black-box and white-box testing.</td>
+                        <td class="answer">Black-box tests functionality; white-box tests internal logic and structure.</td>
+                        <td>4</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 4">
+                        <td>4</td>
+                        <td>Illustrate the debugging process with an example.</td>
+                        <td class="answer">Debugging: identify, isolate, fix error (e.g., loop issue fixed with breakpoint).</td>
+                        <td>3</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 5">
+                        <td>5</td>
+                        <td>Evaluate the role of integration testing in software projects.</td>
+                        <td class="answer">Integration testing ensures module compatibility and system cohesion.</td>
+                        <td>5</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 6">
+                        <td>6</td>
+                        <td>Explain the testing strategies for object-oriented programs.</td>
+                        <td class="answer">OO testing focuses on classes, inheritance, and polymorphism with unit and integration tests.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 7">
+                        <td>7</td>
+                        <td>Discuss the concept of smoke testing and its applications.</td>
+                        <td class="answer">Smoke testing verifies basic functionality (e.g., app launches) before detailed testing.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 8">
+                        <td>8</td>
+                        <td>Analyze the general issues associated with software testing.</td>
+                        <td class="answer">Issues: incomplete coverage, time limits, complexity, and automation challenges.</td>
+                        <td>4</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 9">
+                        <td>9</td>
+                        <td>Explain software reliability and its measurement techniques.</td>
+                        <td class="answer">Reliability is failure-free operation; measured via MTBF, failure rate, statistical models.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 10">
+                        <td>10</td>
+                        <td>Discuss the statistical testing approach in software quality.</td>
+                        <td class="answer">Statistical testing uses random inputs to estimate reliability and defects.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 11">
+                        <td>11</td>
+                        <td>Evaluate the ISO 9000 standard in software quality management.</td>
+                        <td class="answer">ISO 9000 ensures process consistency and quality; widely adopted but resource-intensive.</td>
+                        <td>5</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 12">
+                        <td>12</td>
+                        <td>Explain the SEI Capability Maturity Model (CMM) levels.</td>
+                        <td class="answer">CMM: Initial, Managed, Defined, Quantitatively Managed, Optimizing levels of maturity.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 13">
+                        <td>13</td>
+                        <td>Assess the significance of Six Sigma in software quality.</td>
+                        <td class="answer">Six Sigma reduces defects and improves processes using data-driven methods.</td>
+                        <td>5</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 14">
+                        <td>14</td>
+                        <td>Design a test plan for a banking application.</td>
+                        <td class="answer">Test plan: objectives (e.g., transaction testing), scope, test cases, schedule.</td>
+                        <td>3</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 15">
+                        <td>15</td>
+                        <td>Discuss the role of program analysis tools in testing.</td>
+                        <td class="answer">Tools like SonarQube perform static/dynamic analysis for code quality and error detection.</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3><i class="fas fa-book-open"></i>2-Mark Questions ✨</h3>
+            <table class="two-mark">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Question</th>
+                        <th>Key Points</th>
+                        <th>BTL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 1">
+                        <td>1</td>
+                        <td>What is code review?</td>
+                        <td class="answer">Peer evaluation of code.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 2">
+                        <td>2</td>
+                        <td>Define black-box testing.</td>
+                        <td class="answer">Testing without internal knowledge.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 3">
+                        <td>3</td>
+                        <td>What is white-box testing?</td>
+                        <td class="answer">Testing with internal structure knowledge.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 4">
+                        <td>4</td>
+                        <td>State the purpose of debugging.</td>
+                        <td class="answer">Fix code errors.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 5">
+                        <td>5</td>
+                        <td>What is integration testing?</td>
+                        <td class="answer">Testing combined modules.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 6">
+                        <td>6</td>
+                        <td>Define smoke testing.</td>
+                        <td class="answer">Basic functionality check.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 7">
+                        <td>7</td>
+                        <td>What is software reliability?</td>
+                        <td class="answer">Failure-free operation probability.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 8">
+                        <td>8</td>
+                        <td>Name two software quality standards.</td>
+                        <td class="answer">ISO 9000, CMM.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 9">
+                        <td>9</td>
+                        <td>What is the ISO 9000 standard?</td>
+                        <td class="answer">Quality management framework.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 10">
+                        <td>10</td>
+                        <td>List two levels of SEI CMM.</td>
+                        <td class="answer">Initial, Managed.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 11">
+                        <td>11</td>
+                        <td>What is Six Sigma?</td>
+                        <td class="answer">Defect reduction methodology.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 12">
+                        <td>12</td>
+                        <td>Name two program analysis tools.</td>
+                        <td class="answer">SonarQube, Lint.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 13">
+                        <td>13</td>
+                        <td>What is statistical testing?</td>
+                        <td class="answer">Testing with random inputs.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 14">
+                        <td>14</td>
+                        <td>Define MTBF in reliability.</td>
+                        <td class="answer">Mean Time Between Failures.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 15">
+                        <td>15</td>
+                        <td>What is the purpose of a test plan?</td>
+                        <td class="answer">Guide testing process.</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Unit 5 -->
+        <section id="unit5">
+            <h2>Unit 5: CASE, Software Maintenance, and Software Project Management (CO5)</h2>
+            <h3><i class="fas fa-book"></i>5-Mark Questions 🌟</h3>
+            <table class="five-mark">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Question</th>
+                        <th>Key Points</th>
+                        <th>BTL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 1">
+                        <td>1</td>
+                        <td>Explain the scope and environment of CASE tools.</td>
+                        <td class="answer">CASE automates design, coding, testing; environment integrates tools and repository.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 2">
+                        <td>2</td>
+                        <td>Discuss CASE support across the software life cycle.</td>
+                        <td class="answer">CASE aids analysis, design, coding, testing, and maintenance with tools like DFD editors.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 3">
+                        <td>3</td>
+                        <td>Analyze the characteristics of second-generation CASE tools.</td>
+                        <td class="answer">Second-gen CASE offers AI, automation, and scalability beyond basic tools.</td>
+                        <td>4</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 4">
+                        <td>4</td>
+                        <td>Illustrate the architecture of a CASE environment with a diagram.</td>
+                        <td class="answer">CASE architecture: repository, design tools, testing tools, interfaces (diagram needed).</td>
+                        <td>3</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 5">
+                        <td>5</td>
+                        <td>Evaluate the benefits of CASE tools in software development.</td>
+                        <td class="answer">CASE improves productivity, consistency, and reduces errors and costs.</td>
+                        <td>5</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 6">
+                        <td>6</td>
+                        <td>Explain the characteristics of software maintenance.</td>
+                        <td class="answer">Maintenance: corrective, adaptive, perfective; costly and complex post-deployment.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 7">
+                        <td>7</td>
+                        <td>Discuss software reverse engineering and its applications.</td>
+                        <td class="answer">Reverse engineering extracts design from code; used for legacy systems and documentation.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 8">
+                        <td>8</td>
+                        <td>Analyze different software maintenance process models.</td>
+                        <td class="answer">Quick-fix is fast but risky; iterative refines; reuse-oriented leverages components.</td>
+                        <td>4</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 9">
+                        <td>9</td>
+                        <td>Explain the estimation of software maintenance cost.</td>
+                        <td class="answer">Cost estimated via effort, complexity, and tools like COCOMO for maintenance.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 10">
+                        <td>10</td>
+                        <td>Discuss the basic issues in a software reuse program.</td>
+                        <td class="answer">Issues: compatibility, cost, standardization, and cultural resistance to reuse.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 11">
+                        <td>11</td>
+                        <td>Evaluate the reasons behind limited software reuse.</td>
+                        <td class="answer">Limited reuse due to lack of standards, awareness, and high initial investment.</td>
+                        <td>5</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 12">
+                        <td>12</td>
+                        <td>Explain the responsibilities of a software project manager.</td>
+                        <td class="answer">PM plans, allocates resources, manages risks, and coordinates team efforts.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 13">
+                        <td>13</td>
+                        <td>Analyze the COCOMO model for project estimation.</td>
+                        <td class="answer">COCOMO (basic, intermediate, detailed) estimates effort based on size and complexity.</td>
+                        <td>4</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 14">
+                        <td>14</td>
+                        <td>Discuss risk management in software project management.</td>
+                        <td class="answer">Risk management identifies, analyzes, mitigates, and monitors project risks.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 15">
+                        <td>15</td>
+                        <td>Design a reuse approach for an organization.</td>
+                        <td class="answer">Reuse approach: create repository, set standards, train staff for component reuse.</td>
+                        <td>3</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3><i class="fas fa-book-open"></i>2-Mark Questions ✨</h3>
+            <table class="two-mark">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Question</th>
+                        <th>Key Points</th>
+                        <th>BTL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 1">
+                        <td>1</td>
+                        <td>What is CASE in software engineering?</td>
+                        <td class="answer">Computer-Aided Software Engineering.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 2">
+                        <td>2</td>
+                        <td>List two benefits of CASE tools.</td>
+                        <td class="answer">Productivity, error reduction.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 3">
+                        <td>3</td>
+                        <td>Define software maintenance.</td>
+                        <td class="answer">Post-deployment updates and fixes.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 4">
+                        <td>4</td>
+                        <td>What is reverse engineering?</td>
+                        <td class="answer">Extracting design from code.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 5">
+                        <td>5</td>
+                        <td>State the purpose of a maintenance process model.</td>
+                        <td class="answer">Guide maintenance activities.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 6">
+                        <td>6</td>
+                        <td>What is software reuse?</td>
+                        <td class="answer">Using existing components.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 7">
+                        <td>7</td>
+                        <td>Name two issues in software reuse.</td>
+                        <td class="answer">Compatibility, cost.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 8">
+                        <td>8</td>
+                        <td>What is the role of a project manager?</td>
+                        <td class="answer">Oversee project execution.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 9">
+                        <td>9</td>
+                        <td>Define the COCOMO model.</td>
+                        <td class="answer">Cost estimation model.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 10">
+                        <td>10</td>
+                        <td>What is risk management?</td>
+                        <td class="answer">Handling project uncertainties.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 11">11</td>
+                        <td>List two project estimation techniques.</td>
+                        <td class="answer">COCOMO, Function Point.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 12">
+                        <td>12</td>
+                        <td>What is Halstead’s Software Science?</td>
+                        <td class="answer">Metrics for program complexity.</td>
+                        <td>2</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 13">
+                        <td>13</td>
+                        <td>Name two types of software maintenance.</td>
+                        <td class="answer">Corrective, Adaptive.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 14">
+                        <td>14</td>
+                        <td>What is a CASE environment?</td>
+                        <td class="answer">Integrated toolset for development.</td>
+                        <td>1</td>
+                    </tr>
+                    <tr tabindex="0" onclick="toggleAnswer(this)" aria-label="Question 15">
+                        <td>15</td>
+                        <td>What is the benefit of software reuse?</td>
+                        <td class="answer">Reduced development time.</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Muvin AI Tools Hub | Designed with ❤️ for B.Tech CST Students</p>
+    </footer>
+
+    <button id="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+        function toggleAnswer(row) {
+            const answerCell = row.querySelector('.answer');
+            answerCell.style.display = answerCell.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function searchQuestions() {
+            const input = document.getElementById('search').value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const question = row.cells[1].textContent.toLowerCase();
+                row.style.display = question.includes(input) ? '' : 'none';
+            });
+        }
+
+        window.onscroll = function() {
+            document.getElementById('back-to-top').classList.toggle('show', window.scrollY > 200);
+        };
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
