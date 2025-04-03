@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Software Engineering MCQ-2 Practice</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+            color: #333;
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10+ */
+            user-select: none; /* Standard syntax */
+            touch-action: manipulation; /* Prevent touch selection */
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #0288d1;
+            color: white;
+            border-radius: 10px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .header p {
+            margin: 5px 0;
+            font-size: 1.1em;
+        }
+        .student-info {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            font-size: 1.1em;
+        }
+        .name { color: #2e7d32; font-weight: bold; }
+        .reg-number { color: #d81b60; font-weight: bold; }
+        .department { color: #0288d1; font-weight: bold; }
+        .year { color: #f57c00; font-weight: bold; }
+        .question {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 5px solid #0288d1;
+            touch-action: manipulation; /* Prevent touch selection */
+        }
+        .question-text {
+            pointer-events: none;
+        }
+        .options { pointer-events: auto; }
+        .options label {
+            display: block;
+            padding: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+            touch-action: manipulation; /* Prevent touch selection */
+        }
+        .options label:hover {
+            background: #e0f7fa;
+            border-radius: 5px;
+        }
+        .submit-btn {
+            background: #4caf50;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            font-size: 1.1em;
+            transition: background 0.3s;
+        }
+        .submit-btn:hover { background: #388e3c; }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.3em;
+            color: #d81b60;
+        }
+        .feedback {
+            font-size: 1em;
+            margin-top: 10px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .correct { color: #2e7d32; background: #c8e6c9; }
+        .wrong { color: #c62828; background: #ffcdd2; }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .popup-content input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .popup-content button {
+            background: #0288d1;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .popup-content button:hover { background: #0277bd; }
+        @media (max-width: 768px) {
+            .container { padding: 20px; }
+            .header h1 { font-size: 1.5em; }
+            .header p, .student-info { font-size: 0.9em; }
+            .question { font-size: 1em; }
+            .submit-btn { padding: 10px 20px; font-size: 1em; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 15px; }
+            .header h1 { font-size: 1.2em; }
+            .question { padding: 10px; }
+            .options label { padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>📚 Software Engineering MCQ-2 Practice</h1>
+            <p>Academic Year: 2024-25 | B.Tech (CST) | Year II | Semester II</p>
+            <p>Course Code: 23CTCTT4050 | Faculty: Mr. S.Oyyathevan.,</p>
+        </div>
+        <div id="studentInfo" class="student-info"></div>
+        <div id="mcq-container"></div>
+        <button class="submit-btn" onclick="validateAndSubmit()">Submit Answers 🚀</button>
+        <div class="result" id="result"></div>
+        <div class="footer">
+            © 2025 Muvin AI Tools Hub | Designed with ❤️ for B.Tech CST Students
+        </div>
+    </div>
+
+    <div class="popup" id="startPopup">
+        <div class="popup-content">
+            <h2>Welcome to the Exam! 👋</h2>
+            <input type="text" id="studentName" placeholder="Enter your Name (Text, Spaces, Dots)" required>
+            <input type="text" id="regNumber" placeholder="Enter your Registration Number (Text & Numbers)" required>
+            <input type="text" id="department" placeholder="Enter your Department (Text Only, e.g., CST)" required>
+            <input type="text" id="year" placeholder="Enter your Year (1-4)" required>
+            <button onclick="startExam()">Start Exam 🌟</button>
+        </div>
+    </div>
+
+    <div class="popup" id="resultPopup">
+        <div class="popup-content">
+            <h2>Exam Results 🎉</h2>
+            <p id="resultDetails"></p>
+            <button onclick="closeResultPopup()">Close ❌</button>
+        </div>
+    </div>
+
+    <div class="popup" id="warningPopup">
+        <div class="popup-content">
+            <h2>Warning ⚠️</h2>
+            <p>Please answer all questions before submitting!</p>
+            <button onclick="closeWarningPopup()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        const mcqs = [
+            { question: "Which methodology is used in function-oriented software design? 🛠️", options: ["OOAD", "SA/SD", "Agile", "DevOps"], answer: "SA/SD" },
+            { question: "What does DFD stand for in structured analysis? 📊", options: ["Data Function Diagram", "Data Flow Diagram", "Design Flow Diagram", "Data Format Definition"], answer: "Data Flow Diagram" },
+            { question: "What is the primary purpose of a Data Flow Diagram (DFD)? 🌐", options: ["To describe the flow of control", "To show the flow of data in a system", "To show system architecture", "To represent user interactions"], answer: "To show the flow of data in a system" },
+            { question: "Which of the following is NOT a component of a DFD? ❌", options: ["Process", "Data Store", "Entity", "Object"], answer: "Object" },
+            { question: "Which symbol is used to represent a data store in a DFD? 📂", options: ["Rectangle", "Double-line rectangle", "Circle", "Arrow"], answer: "Double-line rectangle" },
+            { question: "Which of the following is a characteristic of a good user interface? 🌟", options: ["Complex navigation", "Poor responsiveness", "Consistency", "High cognitive load"], answer: "Consistency" },
+            { question: "Which of the following is NOT a type of user interface? 🚫", options: ["Command-line interface", "Graphical user interface", "Virtual reality interface", "Data Flow Interface"], answer: "Data Flow Interface" },
+            { question: "Which UI design methodology focuses on user needs and usability testing? 👥", options: ["Waterfall Model", "Agile Development", "User-Centered Design", "Prototyping"], answer: "User-Centered Design" },
+            { question: "Which type of user interface relies on icons and menus? 🖱️", options: ["Command-Line Interface", "Graphical User Interface", "Menu-Driven Interface", "Natural Language Interface"], answer: "Graphical User Interface" },
+            { question: "Which is a fundamental principle of GUI development? 🎨", options: ["Avoid user feedback", "Minimize consistency", "Reduce user errors", "Increase complexity"], answer: "Reduce user errors" },
+            { question: "What is the primary purpose of software coding? 💻", options: ["Designing user interfaces", "Writing maintainable and efficient software", "Managing hardware resources", "Only testing the software"], answer: "Writing maintainable and efficient software" },
+            { question: "Which of the following is a type of software testing? 🧪", options: ["Syntax Testing", "Black-Box Testing", "API Compiling", "Algorithm Analysis"], answer: "Black-Box Testing" },
+            { question: "White-box testing focuses on which aspect of a program? 🔍", options: ["Functionality", "Internal structure", "User interface", "Performance"], answer: "Internal structure" },
+            { question: "What is the purpose of debugging? 🐞", options: ["To modify source code", "To find and fix defects in the program", "To compile the code", "To create test cases"], answer: "To find and fix defects in the program" },
+            { question: "Smoke testing is also known as: 🚬", options: ["Unit testing", "Build verification testing", "System testing", "Regression testing"], answer: "Build verification testing" },
+            { question: "What does ISO 9000 focus on? ✅", options: ["Programming languages", "Software documentation", "Quality management standards", "Debugging tools"], answer: "Quality management standards" },
+            { question: "Which model is used for software process improvement? 📈", options: ["Waterfall Model", "Spiral Model", "SEI Capability Maturity Model (CMM)", "Agile Model"], answer: "SEI Capability Maturity Model (CMM)" },
+            { question: "Six Sigma is used to: 🎯", options: ["Improve software performance", "Reduce defects in processes", "Increase software cost", "Develop user interfaces"], answer: "Reduce defects in processes" },
+            { question: "What is the full form of CASE? 🛠️", options: ["Computer-Aided Software Engineering", "Computer-Assisted Software Evaluation", "Code Automation and Software Execution", "Component Analysis for Software Engineering"], answer: "Computer-Aided Software Engineering" },
+            { question: "What is the primary advantage of CASE tools? ⚙️", options: ["Increases development time", "Reduces software quality", "Automates software development", "Eliminates testing needs"], answer: "Automates software development" },
+            { question: "Which of the following is NOT a type of software maintenance? 🚫", options: ["Corrective", "Adaptive", "Preventive", "Enhancing"], answer: "Enhancing" },
+            { question: "What is software reverse engineering? 🔄", options: ["Writing new software", "Analyzing software to extract design and implementation details", "Improving UI design", "Debugging software errors"], answer: "Analyzing software to extract design and implementation details" },
+            { question: "Which model is commonly used for estimating maintenance costs? 💰", options: ["Waterfall Model", "Boehm’s Model", "Spiral Model", "Agile Model"], answer: "Boehm’s Model" },
+            { question: "What is the main role of a software project manager? 👨‍💼", options: ["Coding the software", "Managing software development activities", "Performing software testing", "Writing technical documentation"], answer: "Managing software development activities" },
+            { question: "COCOMO is used for: 📊", options: ["Debugging software", "Estimating software cost", "Software testing", "User interface design"], answer: "Estimating software cost" },
+            { question: "Which of the following is NOT a software project estimation technique? ❌", options: ["Function Point Analysis", "Expert Judgment", "Black-Box Testing", "COCOMO"], answer: "Black-Box Testing" },
+            { question: "Which of the following is NOT an activity in structured analysis? 🚫", options: ["Functional decomposition", "Data dictionary creation", "Algorithm design", "Data modeling"], answer: "Algorithm design" },
+            { question: "What is the primary output of structured analysis? 📑", options: ["Use Case Diagram", "Software Requirements Specification", "Data Flow Diagram", "Source Code"], answer: "Data Flow Diagram" },
+            { question: "Which level of DFD represents the highest level overview of a system? 🔝", options: ["Level 1", "Level 2", "Level 0", "Level 3"], answer: "Level 0" },
+            { question: "What is the main purpose of a structured design? 🏗️", options: ["To create an unstructured system", "To define the architecture and components", "To generate machine code", "To document hardware requirements"], answer: "To define the architecture and components" },
+            { question: "Which factor is most important in user interface usability? ⚡", options: ["Complexity", "Efficiency", "Randomness", "Inconsistency"], answer: "Efficiency" },
+            { question: "Which type of UI allows users to interact using touch gestures? ✋", options: ["Command-line Interface", "Graphical User Interface", "Touch-based Interface", "Form-based Interface"], answer: "Touch-based Interface" },
+            { question: "Which UI type is best suited for expert users? 💡", options: ["GUI", "Command-line Interface", "Menu-based Interface", "Natural Language Interface"], answer: "Command-line Interface" },
+            { question: "What is an important principle of GUI development? 🎨", options: ["User-centered design", "Low responsiveness", "Ignoring user feedback", "Complex navigation"], answer: "User-centered design" },
+            { question: "What is the main goal of code review? ✅", options: ["To delete redundant code", "To improve code quality", "To make testing unnecessary", "To reduce the size of software"], answer: "To improve code quality" },
+            { question: "Which type of testing focuses on system requirements? 📋", options: ["Unit Testing", "Black-box Testing", "White-box Testing", "Code Review"], answer: "Black-box Testing" },
+            { question: "Which technique is used in white-box testing? 🔍", options: ["Equivalence partitioning", "Boundary value analysis", "Control flow testing", "Functional testing"], answer: "Control flow testing" },
+            { question: "Regression testing ensures that: 🔄", options: ["The software works on all devices", "New changes do not break existing features", "The software compiles correctly", "The code is written in a single language"], answer: "New changes do not break existing features" },
+            { question: "Which is an example of static testing? 📝", options: ["Unit testing", "Code review", "Regression testing", "Integration testing"], answer: "Code review" },
+            { question: "What does SEI CMM measure? 📈", options: ["Software performance", "Software process maturity", "Number of defects in a project", "Amount of documentation"], answer: "Software process maturity" },
+            { question: "Which of the following is NOT a quality standard? ❌", options: ["ISO 9000", "Six Sigma", "IEEE 829", "Debugging Model"], answer: "Debugging Model" },
+            { question: "What is the highest maturity level in CMM? 🏆", options: ["Managed", "Optimized", "Repeatable", "Defined"], answer: "Optimized" },
+            { question: "CASE tools are mainly used for: ⚙️", options: ["Software testing", "Software development automation", "Marketing analysis", "Hardware testing"], answer: "Software development automation" },
+            { question: "Which of the following is a CASE tool? 🛠️", options: ["Oracle", "Rational Rose", "Microsoft Word", "Notepad"], answer: "Rational Rose" },
+            { question: "What is the main goal of software maintenance? 🔧", options: ["To rewrite the software from scratch", "To improve or modify software after deployment", "To delete unused code", "To reduce software cost"], answer: "To improve or modify software after deployment" },
+            { question: "What is software reengineering? 🔄", options: ["Writing software in a new language", "Modifying software to improve performance and maintainability", "Deleting old software", "Changing user interfaces"], answer: "Modifying software to improve performance and maintainability" },
+            { question: "What is the biggest challenge in software reuse? 🚧", options: ["Code formatting", "Lack of standardized components", "Choosing a programming language", "Writing documentation"], answer: "Lack of standardized components" },
+            { question: "Which type of software reuse focuses on using pre-written components? ♻️", options: ["Code reuse", "Agile reuse", "Database reuse", "Testing reuse"], answer: "Code reuse" },
+            { question: "Which estimation model is best for small projects? 📏", options: ["Function Point Model", "Expert Judgment", "COCOMO", "Halstead’s Model"], answer: "Expert Judgment" },
+            { question: "What does risk management involve in software projects? ⚠️", options: ["Ignoring uncertainties", "Identifying, analyzing, and mitigating risks", "Increasing project scope", "Eliminating project planning"], answer: "Identifying, analyzing, and mitigating risks" },
+            { question: "Which of the following is NOT a project size estimation technique? ❌", options: ["Function Point Analysis", "COCOMO", "Halstead’s Complexity Measures", "Regression Testing"], answer: "Regression Testing" },
+            { question: "What is the purpose of software project planning? 📅", options: ["To write the software code", "To estimate cost, schedule, and resources", "To market the software", "To perform software debugging"], answer: "To estimate cost, schedule, and resources" },
+            { question: "What is the main focus of risk management in software development? ⚠️", options: ["Increasing project scope", "Reducing uncertainties", "Ignoring project issues", "Eliminating software documentation"], answer: "Reducing uncertainties" },
+            { question: "Which estimation technique is used in COCOMO? 📊", options: ["Expert Judgment", "Algorithmic Model", "Functional Analysis", "Monte Carlo Simulation"], answer: "Algorithmic Model" },
+            { question: "What is the full form of COCOMO? 📝", options: ["Cost Constructive Model", "Constructive Cost Model", "Complex Cost Model", "Constructive Computation Model"], answer: "Constructive Cost Model" },
+            { question: "Which is NOT a type of software maintenance? 🚫", options: ["Corrective Maintenance", "Preventive Maintenance", "Debugging Maintenance", "Adaptive Maintenance"], answer: "Debugging Maintenance" },
+            { question: "What is software reverse engineering? 🔄", options: ["Writing software from scratch", "Analyzing and understanding existing software", "Deleting old software", "Modifying hardware for software compatibility"], answer: "Analyzing and understanding existing software" },
+            { question: "Which software maintenance type focuses on fixing errors? 🔧", options: ["Corrective Maintenance", "Perfective Maintenance", "Adaptive Maintenance", "Preventive Maintenance"], answer: "Corrective Maintenance" },
+            { question: "What is software reusability? ♻️", options: ["Ability to use software in different environments", "Ability to delete software after use", "Ability to create new programming languages", "Ability to prevent software crashes"], answer: "Ability to use software in different environments" },
+            { question: "Which of the following is NOT a challenge in software reuse? ❌", options: ["High initial investment", "Lack of standardized components", "Increased development time", "Difficulty in integration"], answer: "Increased development time" },
+            { question: "What is the purpose of unit testing? 🧪", options: ["To test the entire system", "To test individual components or modules", "To perform security testing", "To debug the software"], answer: "To test individual components or modules" },
+            { question: "What is integration testing? 🔗", options: ["Testing individual units of software", "Testing the interaction between different modules", "Testing user interface design", "Testing code documentation"], answer: "Testing the interaction between different modules" },
+            { question: "Which type of testing checks the system against functional requirements? 📋", options: ["White-box Testing", "Black-box Testing", "Alpha Testing", "Performance Testing"], answer: "Black-box Testing" },
+            { question: "What is smoke testing? 🚬", options: ["Initial testing to check if the major functionalities work", "Performance testing of software", "Checking the security of a system", "Testing only the user interface"], answer: "Initial testing to check if the major functionalities work" },
+            { question: "Which of the following is an advantage of CASE tools? ⚙️", options: ["Increased software development time", "Reduced software quality", "Improved software automation", "Increased coding errors"], answer: "Improved software automation" },
+            { question: "What does CASE stand for? 🛠️", options: ["Computer Aided Software Engineering", "Computer Assisted Software Evaluation", "Computer Application Software Environment", "Coding and Software Enhancement"], answer: "Computer Aided Software Engineering" },
+            { question: "Which is NOT a feature of CASE tools? ❌", options: ["Code generation", "Debugging assistance", "Project management", "Hardware testing"], answer: "Hardware testing" },
+            { question: "What does ISO 9001 focus on? ✅", options: ["Software Testing", "Software Quality Management", "System Debugging", "Hardware Maintenance"], answer: "Software Quality Management" },
+            { question: "What is the purpose of Six Sigma in software quality? 🎯", options: ["To improve process efficiency and reduce defects", "To increase development cost", "To eliminate documentation", "To increase software errors"], answer: "To improve process efficiency and reduce defects" },
+            { question: "What is statistical testing used for? 📊", options: ["Evaluating software reliability", "Measuring software complexity", "Reducing software cost", "Debugging software errors"], answer: "Evaluating software reliability" },
+            { question: "What is the first phase of the software development life cycle (SDLC)? 🚀", options: ["Design", "Requirement Analysis", "Coding", "Testing"], answer: "Requirement Analysis" },
+            { question: "Which of the following is NOT a software development model? ❌", options: ["Waterfall Model", "Spiral Model", "Agile Model", "Parallel Computing Model"], answer: "Parallel Computing Model" },
+            { question: "What is software validation? ✅", options: ["Ensuring the software meets customer needs", "Fixing software bugs", "Writing code in a specific language", "Increasing software documentation"], answer: "Ensuring the software meets customer needs" },
+            { question: "Which factor affects software reliability the most? ⚡", options: ["Code complexity", "Hardware selection", "Project manager experience", "Market competition"], answer: "Code complexity" },
+            { question: "Which tool is commonly used for project scheduling? 📅", options: ["MS Word", "MS Excel", "MS Project", "Photoshop"], answer: "MS Project" },
+            { question: "What is the main advantage of software prototyping? 🌟", options: ["Reduced software cost", "Improved user feedback and requirement validation", "Increased development time", "Decreased software reliability"], answer: "Improved user feedback and requirement validation" },
+            { question: "Which is NOT a black-box testing technique? ❌", options: ["Equivalence Partitioning", "Boundary Value Analysis", "Control Flow Testing", "Decision Table Testing"], answer: "Control Flow Testing" },
+            { question: "Which quality standard is widely used in software industries? ✅", options: ["ISO 9000", "HTML5", "HTTP", "XML"], answer: "ISO 9000" },
+            { question: "What does SEI stand for in the SEI Capability Maturity Model? 📝", options: ["Software Engineering Institute", "System Engineering Integration", "Software Enterprise Information", "Structured Engineering Innovation"], answer: "Software Engineering Institute" },
+            { question: "Which is NOT a level in the Capability Maturity Model (CMM)? ❌", options: ["Initial", "Defined", "Optimized", "Debugged"], answer: "Debugged" },
+            { question: "Which of the following is NOT a software quality model? ❌", options: ["McCall’s Model", "Boehm’s Model", "ISO 9126 Model", "Waterfall Model"], answer: "Waterfall Model" },
+            { question: "What is the main goal of software quality assurance (SQA)? ✅", options: ["Reduce software functionality", "Improve software reliability and performance", "Increase development time", "Reduce documentation"], answer: "Improve software reliability and performance" },
+            { question: "Which of the following is NOT a characteristic of software maintenance? ❌", options: ["Continuous process", "Costly process", "Completely eliminates software errors", "Includes software enhancement"], answer: "Completely eliminates software errors" },
+            { question: "Which software maintenance model uses a cyclic approach? 🔄", options: ["Boehm’s Model", "Waterfall Model", "Iterative Enhancement Model", "Code-and-Fix Model"], answer: "Iterative Enhancement Model" },
+            { question: "Which of the following is a major reason why software reuse has not been widely adopted? 🚧", options: ["High development cost", "Lack of standardization", "Lack of programming languages", "Insufficient hardware support"], answer: "Lack of standardization" },
+            { question: "What is the primary benefit of software reuse? ♻️", options: ["Increases software development time", "Reduces development cost and effort", "Eliminates software documentation", "Requires completely new coding"], answer: "Reduces development cost and effort" },
+            { question: "Which of the following is NOT a category of CASE tools? ❌", options: ["Upper CASE", "Lower CASE", "Middle CASE", "Database CASE"], answer: "Database CASE" },
+            { question: "Which of the following is an example of a CASE tool? 🛠️", options: ["Rational Rose", "Photoshop", "Eclipse", "Notepad++"], answer: "Rational Rose" },
+            { question: "What is the main advantage of CASE tools? ⚙️", options: ["Automates software development tasks", "Increases software development time", "Eliminates the need for programmers", "Decreases software efficiency"], answer: "Automates software development tasks" },
+            { question: "Which is NOT a characteristic of CASE tools? ❌", options: ["Code generation", "Software documentation support", "Hardware testing", "Debugging support"], answer: "Hardware testing" },
+            { question: "What is the primary goal of risk management in software projects? ⚠️", options: ["To avoid project risks completely", "To identify, assess, and mitigate risks", "To increase project scope", "To reduce software functionality"], answer: "To identify, assess, and mitigate risks" },
+            { question: "Which software project estimation technique is based on empirical data? 📊", options: ["COCOMO", "Expert Judgment", "Function Point Analysis", "Risk-based Estimation"], answer: "COCOMO" },
+            { question: "Which of the following is NOT a risk in software project management? ❌", options: ["Schedule Risk", "Requirement Risk", "Coffee Break Risk", "Budget Risk"], answer: "Coffee Break Risk" },
+            { question: "Which project management activity deals with assigning tasks to team members? 📅", options: ["Scheduling", "Risk Analysis", "Debugging", "Documentation"], answer: "Scheduling" },
+            { question: "What is the main objective of debugging? 🐞", options: ["Remove errors from the software", "Increase the complexity of the software", "Change software requirements", "Generate random test cases"], answer: "Remove errors from the software" },
+            { question: "Which of the following is NOT a white-box testing technique? ❌", options: ["Decision Coverage", "Condition Coverage", "Equivalence Partitioning", "Loop Testing"], answer: "Equivalence Partitioning" },
+            { question: "What is the key difference between Alpha and Beta testing? 🔍", options: ["Alpha testing is done by developers; Beta testing is done by end users", "Beta testing is done before Alpha testing", "Both are done in the development phase", "Alpha testing is done after software release"], answer: "Alpha testing is done by developers; Beta testing is done by end users" },
+            { question: "Which testing method verifies the internal logic of a program? 🔍", options: ["White-box Testing", "Black-box Testing", "Regression Testing", "Performance Testing"], answer: "White-box Testing" },
+            { question: "Which of the following is NOT a part of software testing life cycle (STLC)? ❌", options: ["Requirement Analysis", "Test Planning", "Coding", "Test Case Development"], answer: "Coding" },
+            { question: "What is the primary goal of software testing? 🧪", options: ["Find and fix defects in software", "Increase software size", "Reduce documentation effort", "Remove all functionalities"], answer: "Find and fix defects in software" }
+        ];
+
+        let studentData = {};
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function loadQuestions() {
+            const container = document.getElementById("mcq-container");
+            container.innerHTML = ""; // Clear previous content
+            const shuffledMcqs = shuffleArray([...mcqs]); // Create a shuffled copy
+            shuffledMcqs.forEach((mcq, index) => {
+                const questionDiv = document.createElement("div");
+                questionDiv.classList.add("question");
+
+                const questionText = document.createElement("p");
+                questionText.classList.add("question-text");
+                questionText.innerHTML = `${index + 1}. ${mcq.question}`;
+                questionDiv.appendChild(questionText);
+
+                const optionsDiv = document.createElement("div");
+                optionsDiv.classList.add("options");
+                mcq.options.forEach(option => {
+                    const optionLabel = document.createElement("label");
+                    optionLabel.innerHTML = `<input type="radio" name="q${index}" value="${option}"> ${option}`;
+                    optionsDiv.appendChild(optionLabel);
+                });
+                questionDiv.appendChild(optionsDiv);
+
+                const feedbackDiv = document.createElement("div");
+                feedbackDiv.classList.add("feedback");
+                feedbackDiv.id = `feedback${index}`;
+                questionDiv.appendChild(feedbackDiv);
+
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function showStartPopup() {
+            document.getElementById("startPopup").style.display = "flex";
+            document.getElementById("studentInfo").style.display = "none";
+            document.getElementById("mcq-container").style.display = "none";
+            document.querySelector(".submit-btn").style.display = "none";
+            document.getElementById("result").style.display = "none";
+        }
+
+        function startExam() {
+            const name = document.getElementById("studentName").value.trim();
+            const regNumber = document.getElementById("regNumber").value.trim();
+            const department = document.getElementById("department").value.trim();
+            const year = document.getElementById("year").value.trim();
+
+            // Validation
+            const nameRegex = /^[A-Za-z\s.]+$/; // Letters, spaces, and dots only
+            const regNumberRegex = /^[A-Za-z0-9]+$/; // Letters and numbers
+            const deptRegex = /^[A-Za-z\s]+$/; // Letters and spaces only
+            const yearRegex = /^[1-4]$/; // Only 1 to 4
+
+            if (!name || !regNumber || !department || !year) {
+                alert("Please fill in all fields! ⚠️");
+                return;
+            }
+            if (!nameRegex.test(name)) {
+                alert("Name must contain only letters, spaces, and dots! ⚠️");
+                return;
+            }
+            if (!regNumberRegex.test(regNumber)) {
+                alert("Registration Number must contain only letters and numbers! ⚠️");
+                return;
+            }
+            if (!deptRegex.test(department)) {
+                alert("Department must contain only letters and spaces! ⚠️");
+                return;
+            }
+            if (!yearRegex.test(year)) {
+                alert("Year must be between 1 and 4! ⚠️");
+                return;
+            }
+
+            studentData = { name, regNumber, department, year };
+            document.getElementById("studentInfo").innerHTML = `
+                <span class="name">Name: ${studentData.name}</span> | 
+                <span class="reg-number">Registration Number: ${studentData.regNumber}</span> | 
+                <span class="department">Department: ${studentData.department}</span> | 
+                <span class="year">Year: ${studentData.year}</span>
+            `;
+            document.getElementById("startPopup").style.display = "none";
+            document.getElementById("studentInfo").style.display = "block";
+            document.getElementById("mcq-container").style.display = "block";
+            document.querySelector(".submit-btn").style.display = "block";
+            document.getElementById("result").style.display = "block";
+            loadQuestions(); // Reload questions in random order
+        }
+
+        function validateAndSubmit() {
+            let allAnswered = true;
+            for (let i = 0; i < mcqs.length; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                    break;
+                }
+            }
+
+            if (allAnswered) {
+                checkAnswers();
+            } else {
+                document.getElementById("warningPopup").style.display = "flex";
+            }
+        }
+
+        function checkAnswers() {
+            let correct = 0;
+            const shuffledMcqs = shuffleArray([...mcqs]); // Use the same shuffled order
+            shuffledMcqs.forEach((mcq, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback${index}`);
+                
+                if (selected) {
+                    if (selected.value === mcq.answer) {
+                        correct++;
+                        feedbackDiv.innerText = "Correct! ✅";
+                        feedbackDiv.className = "feedback correct";
+                    } else {
+                        feedbackDiv.innerText = `Wrong! ❌ Correct answer: ${mcq.answer}`;
+                        feedbackDiv.className = "feedback wrong";
+                    }
+                }
+            });
+
+            const resultText = `
+                Name: ${studentData.name}<br>
+                Registration Number: ${studentData.regNumber}<br>
+                Department: ${studentData.department}<br>
+                Year: ${studentData.year}<br>
+                Score: ${correct} out of ${mcqs.length} 🎉
+            `;
+            document.getElementById("resultDetails").innerHTML = resultText;
+            document.getElementById("resultPopup").style.display = "flex";
+        }
+
+        function closeResultPopup() {
+            document.getElementById("resultPopup").style.display = "none";
+        }
+
+        function closeWarningPopup() {
+            document.getElementById("warningPopup").style.display = "none";
+        }
+
+        document.addEventListener("keydown", function(event) {
+            if (event.ctrlKey && (event.key === "c" || event.key === "a" || event.key === "x")) {
+                event.preventDefault();
+            }
+        });
+
+        document.addEventListener("touchstart", function(event) {
+            if (event.target.classList.contains("question-text")) {
+                event.preventDefault();
+            }
+        }, { passive: false });
+
+        window.onload = function() {
+            showStartPopup();
+            loadQuestions();
+        };
+    </script>
+
+</body>
+</html>
