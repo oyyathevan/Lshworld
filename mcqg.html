@@ -164,7 +164,7 @@
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;"> <!-- Disable right-click -->
 
     <div class="container">
         <div class="header">
@@ -244,7 +244,7 @@
             { question: "Which type of UI allows users to interact using touch gestures? ✋", options: ["Command-line Interface", "Graphical User Interface", "Touch-based Interface", "Form-based Interface"], answer: "Touch-based Interface" },
             { question: "Which UI type is best suited for expert users? 💡", options: ["GUI", "Command-line Interface", "Menu-based Interface", "Natural Language Interface"], answer: "Command-line Interface" },
             { question: "What is an important principle of GUI development? 🎨", options: ["User-centered design", "Low responsiveness", "Ignoring user feedback", "Complex navigation"], answer: "User-centered design" },
-            { question: "What is the main goal of code review? ✅", options: ["To delete redundant code", "To improve code quality", "To make testing unnecessary", "To reduce the size of software"], answer: "To improve code quality" },
+            { question: "What is the main GURU of code review? ✅", options: ["To delete redundant code", "To improve code quality", "To make testing unnecessary", "To reduce the size of software"], answer: "To improve code quality" },
             { question: "Which type of testing focuses on system requirements? 📋", options: ["Unit Testing", "Black-box Testing", "White-box Testing", "Code Review"], answer: "Black-box Testing" },
             { question: "Which technique is used in white-box testing? 🔍", options: ["Equivalence partitioning", "Boundary value analysis", "Control flow testing", "Functional testing"], answer: "Control flow testing" },
             { question: "Regression testing ensures that: 🔄", options: ["The software works on all devices", "New changes do not break existing features", "The software compiles correctly", "The code is written in a single language"], answer: "New changes do not break existing features" },
@@ -464,17 +464,48 @@
             document.getElementById("warningPopup").style.display = "none";
         }
 
+        // Prevent common screenshot and copy key combinations
         document.addEventListener("keydown", function(event) {
+            // Block Ctrl+C, Ctrl+A, Ctrl+X
             if (event.ctrlKey && (event.key === "c" || event.key === "a" || event.key === "x")) {
                 event.preventDefault();
+                alert("Copying is disabled during the exam! ⚠️");
+            }
+            // Block Print Screen
+            if (event.key === "PrintScreen") {
+                event.preventDefault();
+                alert("Screenshots are disabled during the exam! ⚠️");
+                navigator.clipboard.writeText(""); // Clear clipboard
+            }
+            // Block Alt+Print Screen
+            if (event.altKey && event.key === "PrintScreen") {
+                event.preventDefault();
+                alert("Screenshots are disabled during the exam! ⚠️");
+                navigator.clipboard.writeText(""); // Clear clipboard
+            }
+            // Block Windows Snipping Tool shortcut (Win + Shift + S)
+            if (event.metaKey && event.shiftKey && event.key === "s") {
+                event.preventDefault();
+                alert("Snipping tools are disabled during the exam! ⚠️");
             }
         });
 
+        // Prevent touch-based selection
         document.addEventListener("touchstart", function(event) {
             if (event.target.classList.contains("question-text")) {
                 event.preventDefault();
             }
         }, { passive: false });
+
+        // Blur content on window focus loss (discourages screenshots)
+        window.addEventListener("blur", function() {
+            document.body.style.filter = "blur(5px)";
+            alert("Please stay focused on the exam! Screenshots are not allowed. ⚠️");
+        });
+
+        window.addEventListener("focus", function() {
+            document.body.style.filter = "none";
+        });
 
         window.onload = function() {
             showStartPopup();
